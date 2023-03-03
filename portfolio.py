@@ -22,7 +22,7 @@ def projects():
 def hello_name(name):
     return 'Hello %s!' % name 
 
-#app.run(debug=True)
+app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
