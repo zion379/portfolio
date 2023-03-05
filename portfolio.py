@@ -20,9 +20,13 @@ def projects():
 #testing
 @app.route('/hello/<name>')
 def hello_name(name):
-    return 'Hello %s!' % name 
+    return 'Hello %s!' % name
 
-#app.run(debug=True)
+@app.route('/projects/3dprintedsmartmirror')
+def smartMirror():
+    return render_template('smart_mirror_project.html')
+
+app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
