@@ -27,16 +27,17 @@
           </div>
       </div>
     </nav>
-    
+
+    <section>
+      <h3 class="text-center text-light mt-3 display-5">3D Printed Smart Mirror V1</h3>
+    </section>
+
     <section class="text-center">
         <div class="row gy-5 align-items-center">
             <div class="col-7">
                 <div id="coverRenderPhotos" class="carousel slide gx-0 container-fluid">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <div class="carousel-caption d-none d-md-block">
-                                <p class="lead">3D Printed Smart Mirror V1</p>
-                              </div>
                             <img src="https://live.staticflickr.com/65535/52727321385_a748270f52_b.jpg" alt="smart mirror cover render" class="d-block w-100 rounded">
                         </div>
                         <div class="carousel-item">
@@ -136,48 +137,82 @@
                           <div class="accordion-body text-light">Create the perfect ambiance with our Mirror's advanced ambient lighting. With the ability to play animations and fully customizable settings, our ambient lighting allows you to set the mood and enhance your overall experience.</div>
                         </div>
                   </div>
-
-                  </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <section class="align-items-center bg-dark mt-2 pb-4">
+      <h4 class="display-4 text-light text-center border-bottom border-opacity-75 pb-1 pt-4 mt-2 mb-0">The Build Process</h4>
+
+      <ol class="list-group bg-dark p-0 mb-2 text-center border-bottom border-opacity-75">
+        <li class="list-group-item bg-dark p-1 my-1 border-0">
+            <p class="text-align text-light my-1 display-6">1-Prepreation</p>
+        </li>
+        <li class="list-group-item bg-dark p-1 my-1 border-0">
+            <p class="text-align text-light my-1" >2-Design</p>
+        </li>
+        <li class="list-group-item bg-dark p-1 my-1 border-0">
+            <p class="text-align text-light my-1">3-Manufacturing</p>
+        </li>
+        <li class="list-group-item bg-dark p-1 my-1 border-0">
+            <p class="text-align text-light my-1">4-Software</p>
+        </li>
+    </ol>
+    </section>
+
     <div class="row align-items-center">
         <div class="col-6">
-            <h4 class="display-4 text-light p-2 text-align">The build process</h4>
-            <ol class="list-group bg-dark p-4">
-                <li class="list-group-item bg-dark">
-                    <p class="text-align text-light">1-Prepreation</p>
-                </li>
-                <li class="list-group-item bg-dark">
-                    <p class="text-align text-light" >2-Design</p>
-                </li>
-                <li class="list-group-item bg-dark">
-                    <p class="text-align text-light">3-Manufacturing</p>
-                </li>
-                <li class="list-group-item bg-dark">
-                    <p class="text-align text-light">4-Software</p>
-                </li>
-            </ol>
 
-            <h5 class="display-6 p-1 text-align text-light"> The design phase</h2>
-            <p class="text-light p-3 ">With a frame that is both functional and aesthetically pleasing. The frame is divided into three main sections - the Front, Mid, and Rear - each of which is carefully engineered for ease of manufacturing and assembly.
-                The Front section of the frame features a lip designed to hold and lock a two-way mirror, creating a sleek and seamless appearance. The Mid section of the frame provides support for the monitor and houses the main electronics, ensuring a stable and secure installation. Finally, the Rear section of the frame houses the ambient lighting LEDS and provides structural support for the mirror, with mounting indicators for easy installation.</p>
-        </div>
+              <nav id="designPhaseNav" class="navbar  px-3 mb-3 bg-dark-subtle">
+                <h6 class="display-6 text-dark text-align px-1" >The Design Phase</h6>
+
+                <ul class="nav nav-pills">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#frame_desc">Frame</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#design_considerations">Considerations</a>
+                  </li>
+                </ul>
+              </nav>
+
+              <div data-bs-spy="scroll" data-bs-target="#designPhaseNav" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+                <h5 id="frame_desc"> Frame design</h5>
+                <p>Frame design desc</p>
+
+                <h5 id="design_considerations"> Design Considerations</h5>
+                <p>De</p>
+              </div>
+          </div>
 
         <div class="col-6">
+          
             <div id="mirrorBuildPhotos" class="carousel slide">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="https://live.staticflickr.com/65535/52727162194_d0f8b5cc21_b.jpg" class="d-block w-100"  alt="mid_print_rear_frame_corner">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Mirror Frame: Front Section - Top View</h5>
+                    </div>
+                    <img src="https://live.staticflickr.com/65535/52727162194_d0f8b5cc21_b.jpg" class="d-block w-100 rounded"  alt="mid_print_rear_frame_corner">
                   </div>
                   <div class="carousel-item">
-                    <img src="https://live.staticflickr.com/65535/52727385888_981ba69fcf_b.jpg" class="d-block w-100" alt="Mid_section">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Mirror Frame: Front Section - Rear View </h5>
+                    </div>
+                    <img src="https://live.staticflickr.com/65535/52727385888_981ba69fcf_b.jpg" class="d-block w-100 rounded" alt="Mid_section">
                   </div>
                   <div class="carousel-item">
-                    <img src="https://live.staticflickr.com/65535/52726903611_db4f470b44_b.jpg" class="d-block w-100" alt="Mid_Front_Section_side_View">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Mirror Frame: Mid Section - Rear View </h5>
+                    </div>
+                    <img src="https://live.staticflickr.com/65535/52726903611_db4f470b44_b.jpg" class="d-block w-100 rounded" alt="Mid_Front_Section_side_View">
                   </div>
                   <div class="carousel-item">
-                    <img src="https://live.staticflickr.com/65535/52727162129_6fa00fd814_b.jpg" class="d-block w-100" alt="Mid_Front_Section_side_View">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Mirror Frame: Mid Section - Top View </h5>
+                    </div>
+                    <img src="https://live.staticflickr.com/65535/52727162129_6fa00fd814_b.jpg" class="d-block w-100 rounded" alt="Mid_Front_Section_side_View">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#mirrorBuildPhotos" data-bs-slide="prev">
@@ -190,6 +225,61 @@
                 </button>
               </div>
         </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-6">
+        <div id="ManufacturingPhotos" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://live.staticflickr.com/65535/52744938228_4e0379b6f7_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+            </div>
+            <div class="carousel-item">
+              <img src="https://live.staticflickr.com/65535/52724299978_8e50583315_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#ManufacturingPhotos" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#ManufacturingPhotos" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <h5 class="display-6 p-1 text-align text-light">Manufacturing</h5>
+        <p class="text-light p-3">Manufacturing desc</p>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-6">
+        <h5 class="display-6 p-1 text-align text-light">Software</h5>
+        <p class="text-light p-3">Software desc</p>
+      </div>
+      <div class="col-6">
+        <div id="SoftwarePhotos" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://live.staticflickr.com/65535/52743904582_b1c9842672_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+            </div>
+            <div class="carousel-item">
+              <img src="https://live.staticflickr.com/65535/52724299978_8e50583315_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#SoftwarePhotos" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#SoftwarePhotos" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
