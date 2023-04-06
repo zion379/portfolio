@@ -31,7 +31,8 @@ def hello_name(name):
 def smartMirror():
     return render_template('smart_mirror_project.html')
 
-app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
+
+#app.run(debug=True)
