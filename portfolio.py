@@ -38,7 +38,7 @@ def smartMirror():
     software_images = ["https://live.staticflickr.com/65535/52743904582_b1c9842672_b.jpg", "https://live.staticflickr.com/65535/52724299978_8e50583315_b.jpg"]
     return render_template('smart_mirror_project.html', project_title=project_title, rendered_photos=rendered_photos, mirror_section_titles=mirror_section_titles, mirror_section_images=mirror_section_images, manufac_images=manufac_images, software_images=software_images)
 
-app.run(debug=True)
+#app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
