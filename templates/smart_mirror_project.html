@@ -1,297 +1,278 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Zion Johnson Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  </head>
-  <body class="bg-dark">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-          <a href="/" class="navbar-brand">Zion C Johnson</a>
-          <div class="collaspe navbar-collaspe" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-lg-0">
-                  <li class="nav-item">
-                      <a class="nav-link" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/skills">Skills</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/projects">Projects</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-    </nav>
+{% extends 'base.html' %}
 
-    <section>
-      <h3 class="text-center text-light mt-3 display-5">3D Printed Smart Mirror V1</h3>
-    </section>
+{% block head %}{% endblock %}
 
-    <section class="text-center">
-        <div class="row gy-5 align-items-center">
-            <div class="col-7">
-                <div id="coverRenderPhotos" class="carousel slide gx-0 container-fluid">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://live.staticflickr.com/65535/52727321385_a748270f52_b.jpg" alt="smart mirror cover render" class="d-block w-100 rounded">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://live.staticflickr.com/65535/52726903686_45fd1ceca9_b.jpg" alt="smart mirror cover render 2" class="d-block w-100 rounded" >
-                        </div>
-                    </div>
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#coverRenderPhotos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#coverRenderPhotos" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#coverRenderPhotos" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#coverRenderPhotos" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
+{% block body %}
+<section>
+  <h3 class="text-center text-light mt-3 display-5">{{project_title}}</h3>
+</section>
 
-            <div class="col-5 gx-5">
-                <h4 class="Display-3 text-light">Mirror Features</h3>
-
-                <div class="accordion accordion-flush p-3" id="accordionFlushMirrorFeatures">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header text-center" id="flush-headingOne">
-                        <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Gesture Control
-                        </button>
-                      </h2>
-                      <div id="flush-collapseOne" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushMirrorFeatures">
-                        <div class="accordion-body text-light">Our users will have the ability to interact with and control the mirror using hand gesture controls. The system will operate within a defined distance from the mirror, and I am currently working on finalizing this distance as I continue to develop the technology.</div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header text-center" id="flush-headingTwo">
-                        <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Auto Rotation
-                        </button>
-                      </h2>
-                      <div id="flush-collapseTwo" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushMirrorFeatures">
-                        <div class="accordion-body text-light">Our mirror can be mounted in either a horizontal or vertical orientation, and it will automatically adjust to the chosen position.</p></div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header text-center" id="flush-headingThree">
-                        <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            Voice Commands
-                        </button>
-                      </h2>
-                      <div id="flush-collapseThree" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushMirrorFeatures">
-                        <div class="accordion-body text-light">Our users will have the ability to give voice commands to control their home environment with just your voice. Connect to your favorite music streaming services, set reminders, check the weather, and so much more without ever lifting a finger.</div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header text-center" id="flush-headingFour">
-                          <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                            OpenAI Chat-GPT
-                          </button>
-                        </h2>
-                        <div id="flush-collapseFour" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushMirrorFeatures">
-                          <div class="accordion-body text-light">Our Mirror is equipped with the latest open-AI technology, ChatGPT, allowing you to ask complex questions and receive more human-like responses than ever before. With our innovative technology, you can enjoy a personalized and interactive experience, tailored to your unique needs and preferences.</div>
-                        </div>
-                      </div>
-
-                      <div class="accordion-item">
-                        <h2 class="accordion-header text-center" id="flush-headingFive">
-                          <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                            Speakers
-                          </button>
-                        </h2>
-                        <div id="flush-collapseFive" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushMirrorFeatures">
-                          <div class="accordion-body text-light">Experience immersive sound with our Mirror's advanced audio system. Equipped with two powerful 3-Watt speakers and a supporting sound system, our Mirror allows you to enjoy clear sound quality while engaging with your personalized assistant, playing music, or using supported applications</div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header text-center" id="flush-headingSix">
-                              <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                                Simple Augment reality Applications
-                              </button>
-                            </h2>
-                            <div id="flush-collapseSix" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushMirrorFeatures">
-                              <div class="accordion-body text-light">Our mirror with support Augment Reality Applications. Merging the digital world with the real. For example you could have a virtual animated overlay of a clock positioned perfectly on the opposite side of the room. by default there will be simple utility and entertainment applications.</div>
-                            </div>
-                      </div>
-                      <div class="accordion-item">
-                        <h2 class="accordion-header text-center" id="flush-headingSeven">
-                          <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
-                            Ambient Lighting
-                          </button>
-                        </h2>
-                        <div id="flush-collapseSeven" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushMirrorFeatures">
-                          <div class="accordion-body text-light">Create the perfect ambiance with our Mirror's advanced ambient lighting. With the ability to play animations and fully customizable settings, our ambient lighting allows you to set the mood and enhance your overall experience.</div>
-                        </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="align-items-center bg-dark mt-2 pb-4">
-      <h4 class="display-4 text-light text-center border-bottom border-opacity-75 pb-1 pt-4 mt-2 mb-0">The Build Process</h4>
-
-      <ol class="list-group bg-dark p-0 mb-2 text-center border-bottom border-opacity-75">
-        <li class="list-group-item bg-dark p-1 my-1 border-0">
-            <p class="text-align text-light my-1 display-6">1-Prepreation</p>
-        </li>
-        <li class="list-group-item bg-dark p-1 my-1 border-0">
-            <p class="text-align text-light my-1" >2-Design</p>
-        </li>
-        <li class="list-group-item bg-dark p-1 my-1 border-0">
-            <p class="text-align text-light my-1">3-Manufacturing</p>
-        </li>
-        <li class="list-group-item bg-dark p-1 my-1 border-0">
-            <p class="text-align text-light my-1">4-Software</p>
-        </li>
-    </ol>
-    </section>
-
-    <div class="row align-items-center">
-        <div class="col-6">
-
-              <nav id="designPhaseNav" class="navbar  px-3 mb-3 bg-dark-subtle">
-                <h6 class="display-6 text-dark text-align px-1" >The Design Phase</h6>
-
-                <ul class="nav nav-pills">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#frame_desc">Frame</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#frontFrame">Front</a>
-                  </li>
-                  <li>
-                    <a class="nav-link" href="#midFrame">Mid</a>
-                  </li>
-                  <li>
-                    <a class="nav-link" href="#rearFrame">Rear</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div data-bs-spy="scroll" data-bs-target="#designPhaseNav" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-dark-subtle p-3 rounded-2 text-center text-light" tabindex="0">
-                <h5 id="frame_desc"> Frame design</h5>
-                <p>The frame is divided into three main sections - the Front, Mid, and Rear - each of which is carefully engineered for ease of manufacturing and assembly.</p>
-
-                <h5 id="frontFrame"> Front</h5>
-                <p>Front Frame Desc</p>
-
-                <h5 id="midFrame"> Mid</h5>
-                <p>Mid Frame Desc</p>
-
-                <h5 id="rearFrame">Rear</h5>
-                <p>Rear Frame Desc</p>
-              </div>
-          </div>
-
-        <div class="col-6">
-          
-            <div id="mirrorBuildPhotos" class="carousel slide">
+<!--Smart Mirror Cover Renders and Features Section-->
+<section class="text-center">
+    <div class="row gy-5 align-items-center">
+        <div class="col-7">
+            <div id="coverRenderPhotos" class="carousel slide gx-0 container-fluid">
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Mirror Frame: Front Section - Top View</h5>
+                    <div class="carousel-item active">
+                        <img src="{{rendered_photos[0]}}" alt="smart mirror cover render" class="d-block w-100 rounded">
                     </div>
-                    <img src="https://live.staticflickr.com/65535/52727162194_d0f8b5cc21_b.jpg" class="d-block w-100 rounded"  alt="mid_print_rear_frame_corner">
-                  </div>
-                  <div class="carousel-item">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Mirror Frame: Front Section - Rear View </h5>
+                    <div class="carousel-item">
+                        <img src="{{rendered_photos[1]}}" alt="smart mirror cover render 2" class="d-block w-100 rounded" >
                     </div>
-                    <img src="https://live.staticflickr.com/65535/52727385888_981ba69fcf_b.jpg" class="d-block w-100 rounded" alt="Mid_section">
-                  </div>
-                  <div class="carousel-item">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Mirror Frame: Mid Section - Rear View </h5>
-                    </div>
-                    <img src="https://live.staticflickr.com/65535/52726903611_db4f470b44_b.jpg" class="d-block w-100 rounded" alt="Mid_Front_Section_side_View">
-                  </div>
-                  <div class="carousel-item">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Mirror Frame: Mid Section - Top View </h5>
-                    </div>
-                    <img src="https://live.staticflickr.com/65535/52727162129_6fa00fd814_b.jpg" class="d-block w-100 rounded" alt="Mid_Front_Section_side_View">
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#coverRenderPhotos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#coverRenderPhotos" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#coverRenderPhotos" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#coverRenderPhotos" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-5 gx-5">
+            <h4 class="Display-3 text-light">Mirror Features</h3>
+
+            <div class="accordion accordion-flush p-3" id="accordionFlushMirrorFeatures">
+                <div class="accordion-item">
+                  <h2 class="accordion-header text-center" id="flush-headingOne">
+                    <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Gesture Control
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushMirrorFeatures">
+                    <div class="accordion-body text-light">Our users will have the ability to interact with and control the mirror using hand gesture controls. The system will operate within a defined distance from the mirror, and I am currently working on finalizing this distance as I continue to develop the technology.</div>
                   </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#mirrorBuildPhotos" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#mirrorBuildPhotos" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header text-center" id="flush-headingTwo">
+                    <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Auto Rotation
+                    </button>
+                  </h2>
+                  <div id="flush-collapseTwo" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushMirrorFeatures">
+                    <div class="accordion-body text-light">Our mirror can be mounted in either a horizontal or vertical orientation, and it will automatically adjust to the chosen position.</p></div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header text-center" id="flush-headingThree">
+                    <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Voice Commands
+                    </button>
+                  </h2>
+                  <div id="flush-collapseThree" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushMirrorFeatures">
+                    <div class="accordion-body text-light">Our users will have the ability to give voice commands to control their home environment with just your voice. Connect to your favorite music streaming services, set reminders, check the weather, and so much more without ever lifting a finger.</div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header text-center" id="flush-headingFour">
+                      <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        OpenAI Chat-GPT
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushMirrorFeatures">
+                      <div class="accordion-body text-light">Our Mirror is equipped with the latest open-AI technology, ChatGPT, allowing you to ask complex questions and receive more human-like responses than ever before. With our innovative technology, you can enjoy a personalized and interactive experience, tailored to your unique needs and preferences.</div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header text-center" id="flush-headingFive">
+                      <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        Speakers
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushMirrorFeatures">
+                      <div class="accordion-body text-light">Experience immersive sound with our Mirror's advanced audio system. Equipped with two powerful 3-Watt speakers and a supporting sound system, our Mirror allows you to enjoy clear sound quality while engaging with your personalized assistant, playing music, or using supported applications</div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header text-center" id="flush-headingSix">
+                          <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                            Simple Augment reality Applications
+                          </button>
+                        </h2>
+                        <div id="flush-collapseSix" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushMirrorFeatures">
+                          <div class="accordion-body text-light">Our mirror with support Augment Reality Applications. Merging the digital world with the real. For example you could have a virtual animated overlay of a clock positioned perfectly on the opposite side of the room. by default there will be simple utility and entertainment applications.</div>
+                        </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header text-center" id="flush-headingSeven">
+                      <button class="accordion-button collapsed bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                        Ambient Lighting
+                      </button>
+                    </h2>
+                    <div id="flush-collapseSeven" class="accordion-collapse collapse bg-dark" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushMirrorFeatures">
+                      <div class="accordion-body text-light">Create the perfect ambiance with our Mirror's advanced ambient lighting. With the ability to play animations and fully customizable settings, our ambient lighting allows you to set the mood and enhance your overall experience.</div>
+                    </div>
               </div>
+            </div>
         </div>
     </div>
+</section>
 
-    <div class="row align-items-center">
-      <div class="col-6">
-        <div id="ManufacturingPhotos" class="carousel slide">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://live.staticflickr.com/65535/52744938228_4e0379b6f7_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
-            </div>
-            <div class="carousel-item">
-              <img src="https://live.staticflickr.com/65535/52724299978_8e50583315_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
-            </div>
+<!--Build Process Workflow title-->
+<section class="align-items-center bg-dark mt-2 pb-4">
+  <h4 class="display-4 text-light text-center border-bottom border-opacity-75 pb-1 pt-4 mt-2 mb-0">The Build Process</h4>
+
+  <ol class="list-group bg-dark p-0 mb-2 text-center border-bottom border-opacity-75">
+    <li class="list-group-item bg-dark p-1 my-1 border-0">
+        <p class="text-align text-light my-1 display-6">1-Prepreation</p>
+    </li>
+    <li class="list-group-item bg-dark p-1 my-1 border-0">
+        <p class="text-align text-light my-1" >2-Design</p>
+    </li>
+    <li class="list-group-item bg-dark p-1 my-1 border-0">
+        <p class="text-align text-light my-1">3-Manufacturing</p>
+    </li>
+    <li class="list-group-item bg-dark p-1 my-1 border-0">
+        <p class="text-align text-light my-1">4-Software</p>
+    </li>
+</ol>
+</section>
+
+<!--Design Phase Section-->
+<div class="row align-items-center">
+    <div class="col-6">
+
+          <nav id="designPhaseNav" class="navbar  px-3 mb-3 bg-dark-subtle">
+            <h6 class="display-6 text-dark text-align px-1" >The Design Phase</h6>
+
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link" href="#frame_desc">Frame</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#frontFrame">Front</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#midFrame">Mid</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#rearFrame">Rear</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div data-bs-spy="scroll" data-bs-target="#designPhaseNav" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-dark-subtle p-3 rounded-2 text-center text-light" tabindex="0">
+            <h5 id="frame_desc"> Frame design</h5>
+            <p>The frame is divided into three main sections - the Front, Mid, and Rear - each of which is carefully engineered for ease of manufacturing and assembly.</p>
+
+            <h5 id="frontFrame"> Front</h5>
+            <p>Front Frame Desc</p>
+
+            <h5 id="midFrame"> Mid</h5>
+            <p>Mid Frame Desc</p>
+
+            <h5 id="rearFrame">Rear</h5>
+            <p>Rear Frame Desc</p>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#ManufacturingPhotos" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#ManufacturingPhotos" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
       </div>
 
-      <div class="col-6">
-        <h5 class="display-6 p-1 text-align text-light">Manufacturing</h5>
-        <p class="text-light p-3">Manufacturing desc</p>
-      </div>
-    </div>
+    <div class="col-6">
+      
+        <div id="mirrorBuildPhotos" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>{{mirror_section_titles[0]}}</h5>
+                </div>
+                <img src="{{mirror_section_images[0]}}" class="d-block w-100 rounded"  alt="mid_print_rear_frame_corner">
+              </div>
 
-    <div class="row align-items-center">
-      <div class="col-6">
-        <h5 class="display-6 p-1 text-align text-light">Software</h5>
-        <p class="text-light p-3">Software desc</p>
-      </div>
-      <div class="col-6">
-        <div id="SoftwarePhotos" class="carousel slide">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://live.staticflickr.com/65535/52743904582_b1c9842672_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+              {% for section in  mirror_section_titles%}
+              {% if loop.index0 != 0 %}
+              <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>{{mirror_section_titles[loop.index0]}}</h5>
+                </div>
+                <img src="{{mirror_section_images[loop.index0]}}" class="d-block w-100 rounded"  alt="mid_print_rear_frame_corner">
+              </div>
+              {% endif %}
+              {% endfor %}
             </div>
-            <div class="carousel-item">
-              <img src="https://live.staticflickr.com/65535/52724299978_8e50583315_b.jpg" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
-            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#mirrorBuildPhotos" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mirrorBuildPhotos" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#SoftwarePhotos" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#SoftwarePhotos" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
     </div>
-  </body>
-</html>
+</div>
+
+<!--Manufacturing Phase Section-->
+<div class="row align-items-center">
+  <div class="col-6">
+    <div id="ManufacturingPhotos" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{manufac_images[0]}}" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+        </div>
+        {% for photo in manufac_images%}
+        {% if loop.index0 != 0 %}
+        <div class="carousel-item">
+          <img src="{{manufac_images[loop.index0]}}" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#ManufacturingPhotos" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#ManufacturingPhotos" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <h5 class="display-6 p-1 text-align text-light">Manufacturing</h5>
+    <p class="text-light p-3">Manufacturing desc</p>
+  </div>
+</div>
+
+<!--Software Phase Section-->
+<div class="row align-items-center">
+  <div class="col-6">
+    <h5 class="display-6 p-1 text-align text-light">Software</h5>
+    <p class="text-light p-3">Software desc</p>
+  </div>
+  <div class="col-6">
+    <div id="SoftwarePhotos" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{software_images[0]}}" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+        </div>
+        {% for photo in software_images%}
+        {% if loop.index0 != 0 %}
+        <div class="carousel-item">
+          <img src="{{software_images[loop.index0]}}" alt="Rear part fresh off the printer" class="d-block w-100 rounded">
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#SoftwarePhotos" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#SoftwarePhotos" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
