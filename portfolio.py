@@ -30,7 +30,7 @@ def hello_name(name):
 
 @app.route('/projects/3dprintedsmartmirror')
 def smartMirror():
-    project_title = "3D Printed Smart Mirror V1"
+    project_title = "3D PRINTED SMART MIRROR V1"
     rendered_photos = ["https://live.staticflickr.com/65535/52727321385_a748270f52_b.jpg", "https://live.staticflickr.com/65535/52726903686_45fd1ceca9_b.jpg"]
     mirror_section_titles = ["Mirror Frame: Front Section - Top View","Mirror Frame: Front Section - Rear View","Mirror Frame: Mid Section - Rear View","Mirror Frame: Mid Section - Top View "]
     mirror_section_images = ["https://live.staticflickr.com/65535/52727162194_d0f8b5cc21_b.jpg", "https://live.staticflickr.com/65535/52727385888_981ba69fcf_b.jpg", "https://live.staticflickr.com/65535/52726903611_db4f470b44_b.jpg", "https://live.staticflickr.com/65535/52727162129_6fa00fd814_b.jpg"]
@@ -38,7 +38,7 @@ def smartMirror():
     software_images = ["https://live.staticflickr.com/65535/52743904582_b1c9842672_b.jpg", "https://live.staticflickr.com/65535/52724299978_8e50583315_b.jpg"]
     return render_template('smart_mirror_project.html', project_title=project_title, rendered_photos=rendered_photos, mirror_section_titles=mirror_section_titles, mirror_section_images=mirror_section_images, manufac_images=manufac_images, software_images=software_images)
 
-#app.run(debug=True)
+app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
