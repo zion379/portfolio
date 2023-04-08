@@ -1,7 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, render_template, request, url_for
+import openai
+import json
 
 app = Flask(__name__)
-
+openai.api_key = "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"
 
 @app.route('/')
 def index():
@@ -38,7 +40,19 @@ def smartMirror():
     software_images = ["https://live.staticflickr.com/65535/52743904582_b1c9842672_b.jpg", "https://live.staticflickr.com/65535/52724299978_8e50583315_b.jpg"]
     return render_template('smart_mirror_project.html', project_title=project_title, rendered_photos=rendered_photos, mirror_section_titles=mirror_section_titles, mirror_section_images=mirror_section_images, manufac_images=manufac_images, software_images=software_images)
 
-#app.run(debug=True)
+@app.route('/smart-mirror-chatbot', methods=("GET", "POST"))
+def MirrorCompletions():
+    if request.method == "POST":
+        usr_response = request.form["userinput"]
+        response = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=[{"role": "user", "content": usr_response}])
+        return redirect(url_for("MirrorCompletions", result=response.choices[0].message))
+
+    result = request.args.get("result")
+    data = json.loads(result)
+    result = data["content"]
+    return render_template("gpt_completions.html", result=result)
+
+app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+<h2 class="text-light text-center mt-2 pb-5">Smart Mirror Chat-GPT</h2>
+<div class="row text-center" >
+    <form action="/smart-mirror-chatbot" method="post">
+        <div class="col-md-12">
+            <div class="ps-2 pe-2 mb-2 mt-6 d-flex justify-content-center">
+                <input style="width: 600px;" class="bg-secondary text-light rounded-start-pill rounded-end-pill border-0" type="text" name="userinput" placeholder="Ask me Anything.." required>
+            </div>
+            <input class="btn bg-primary rounded-start-pill rounded-end-pill text-light" type="submit" value="Send Message">
+            {% if result %}
+            <div class="ps-2 pe-2 result"> <p class="text-light pt-4">{{result}}</p></div>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+{% endblock %}
