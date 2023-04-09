@@ -1,9 +1,9 @@
-from flask import Flask, render_template, redirect, render_template, request, url_for
+from flask import Flask, render_template, redirect, request, url_for
 import openai
 import json
 
 app = Flask(__name__)
-openai.api_key = "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"
+openai.api_key = "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"
 
 @app.route('/')
 def index():
@@ -47,12 +47,17 @@ def MirrorCompletions():
         response = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=[{"role": "user", "content": usr_response}])
         return redirect(url_for("MirrorCompletions", result=response.choices[0].message))
 
-    result = request.args.get("result")
+    result = str(request.args.get("result"))
     data = json.loads(result)
     result = data["content"]
     return render_template("gpt_completions.html", result=result)
 
-app.run(debug=True)
+@app.route('/smart-mirror-chat')
+def MirrorChat():
+    return render_template("gpt_completions.html")
+
+
+#app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
