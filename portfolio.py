@@ -1,9 +1,11 @@
 from flask import Flask, render_template, redirect, request, url_for
 import openai
 import json
+import os
 
 app = Flask(__name__)
-openai.api_key = "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"
+openai.api_key = os.getenv('OPENAI_API_KEY')
+print(os.getenv('OPENAI_API_KEY'))
 
 @app.route('/')
 def index():
@@ -57,7 +59,7 @@ def MirrorChat():
     return render_template("gpt_completions.html")
 
 
-#app.run(debug=True)
+app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
