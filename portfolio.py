@@ -83,7 +83,7 @@ def MirrorChat():
     return render_template("gpt_completions.html")
 
 
-app.run(debug=True)
+app.run(debug=False)
 
 if __name__ == '__main__':
     app.run()
