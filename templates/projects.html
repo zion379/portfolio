@@ -17,6 +17,16 @@
         </div>
       </div>
     {% endfor %}
+    {% for project in all_projects %}
+    <div class="card bg-secondary col-md-4 col-sm-6 ms-2 me-2" style="width: 18rem;">
+      <!-- <img src="/project_view/{{project.project_name}}" alt="proj image" class="d-block w-100 rounded"> -->
+      <div class="card-body">
+        <h5 class="card-title text-light">{{project.project_name}}</h5>
+        <p class="card-text text-light">{{project.project_desc}}</p>
+        <a href="/project_view/{{project.project_name}}" class="btn btn-primary">View Project</a>
+      </div>
+    </div>
+    {% endfor %}
 </div>
 </section>
 {% endblock %}

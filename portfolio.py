@@ -2,10 +2,14 @@ from flask import Flask, render_template, redirect, request, url_for
 import openai
 import json
 import os
+from modules import projects_content
+from modules import project as Proj
 
 app = Flask(__name__)
 openai.api_key = os.getenv('OPENAI_API_KEY')
 print(os.getenv('OPENAI_API_KEY'))
+
+
 
 @app.route('/')
 def index():
@@ -19,13 +23,33 @@ def skills():
     return render_template('skills.html', skills=my_skills)
 
 @app.route('/projects')
-def projects():
+def project():
     page_title = "My Projects"
-    project_img_urls = ["https://live.staticflickr.com/65535/52727321385_a748270f52_b.jpg", "https://live.staticflickr.com/65535/52798783778_0624d7202e_b.jpg"]
-    project_titles = ["3D Printed Smart Mirror","EMP Device"]
-    project_Descriptions = ["This Mirrors casing is entierly 3D-printed making the mirror exceptionaly light. this mirror features include Chat-GPT, Augment Reality, Sound System, and More!","Using EMP to Stimulate Photosynthesis"]
-    project_Link = ["/projects/3dprintedsmartmirror","/"]
-    return render_template('projects.html', page_title=page_title, project_titles=project_titles, project_Descriptions=project_Descriptions, project_Link=project_Link, project_img_urls=project_img_urls)
+    project_img_urls = ["https://live.staticflickr.com/65535/52727321385_a748270f52_b.jpg"]
+    project_titles = ["3D Printed Smart Mirror"]
+    project_Descriptions = ["This Mirrors casing is entierly 3D-printed making the mirror exceptionaly light. this mirror features include Chat-GPT, Augment Reality, Sound System, and More!"]
+    project_Link = ["/projects/3dprintedsmartmirror"]
+
+    all_projects = projects_content.all_projects
+    return render_template('projects.html', all_projects=all_projects,page_title=page_title, project_titles=project_titles, project_Descriptions=project_Descriptions, project_Link=project_Link, project_img_urls=project_img_urls)
+
+
+
+@app.route('/project_view/<project_name>')
+def project_view(project_name: str):
+    current_project: Proj.Project_obj 
+    # create the project objects
+    for project in projects_content.all_projects:
+        if project.project_name.lower() == project_name.lower():
+            current_project = project
+            print("current project " + current_project.project_name + " content length: " + str(len(current_project.project_content)))
+            break
+        else:
+            current_project = None
+            print(project_name + " is not a project that exist.")
+            
+
+    return render_template('project_view.html', project=current_project) # create this page file
 
 #testing
 @app.route('/hello/<name>')
