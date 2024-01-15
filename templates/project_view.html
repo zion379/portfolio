@@ -5,20 +5,12 @@
 
 <div class="container">
   <h1 class="text-light" style="text-align: center; margin-top: .4em;">{{project.project_name}}</h1>
+  {% if project.date %}
+    <h4>{{project.date}}</h4>
+  {% endif %}
   <h5 class="text-light mt-3" style="text-align: center ;">{{project.project_desc}}</h5>
-  {% for content in project.project_content %}
-    {% if content.content_type.value == 'img'%}
-        <img class="img-fluid mx-auto rounded" src="{{content.content_url}}" alt="">
-    {% endif %}
-    {% if content.content_type.value == 'text'%}
-        <p class="text-light">{{content.text_content}}</p>
-    {% endif %}
-    {% if content.content_type.value == 'gif'%}
-    <div style="display: flex; justify-content:center;">
-        <img  class="img-fluid mx-auto rounded" src="{{content.content_url}}" alt="animated gif" />
-    </div>
-    {% endif %}
-  {% endfor %}
+  {% import 'macros.html'  as macros %}
+  {{ macros.show_proj_content(project) }}
 </div>
 
 {% endblock %}

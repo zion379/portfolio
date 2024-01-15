@@ -1,0 +1,85 @@
+{% macro show_proj_content(project) %}
+    <div>
+        {% for content in project.project_content %}
+            {% if content.content_type.value == 'img'%}
+                {{ image_content(content) }}
+            {% endif %}
+            {% if content.content_type.value == 'text'%}
+                {{ text_content(content) }}
+            {% endif %}
+            {% if content.content_type.value == 'gif'%}
+                {{ gif_content(content) }}
+            {% endif %}
+            {% if content.content_type.value == 'group'%}
+                {{ content_group(content) }}
+            {% endif %}
+        {% endfor %}
+    <div>
+{% endmacro %}
+
+{% macro image_content(content) %}
+    {% if content.position.value == 'left'%}
+        <img class="img-fluid rounded" style="float: left; max-width: 100%;" src="{{content.content_url}}" alt="">
+    {% elif content.position == 'center'%}
+        <div style="display: flex; justify-content:center">
+            <img class="img-fluid rounded" style=" max-width: 100%;" src="{{content.content_url}}" alt="">
+        </div>
+    {% elif content.position.value == 'right'%}
+            <img class="rounded" style="float:right; max-width: 100%;" src="{{content.content_url}}" alt="">
+    {% else %}
+        <div style="display: flex; justify-content:center;">
+            <img class="img-fluid rounded" src="{{content.content_url}}" alt="">
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro text_content(content) %}
+    {% if content.position.value == 'left'%}
+        <p class="text-light mx-2" style="text-align: left;">{{content.text_content}}</p>
+    {% elif content.position == 'center'%}
+        <p class="text-light mx-2" style="text-align: center;">{{content.text_content}}</p>
+    {% elif content.position.value == 'right'%}
+        <p class="text-light mx-2" style="text-align: right;">{{content.text_content}}</p>
+    {% else %}
+        <p class="text-light" style="text-align: center;">{{content.text_content}}</p>
+    {% endif %}
+{% endmacro %}
+
+{% macro gif_content(content) %}
+    {% if content.position.value == 'left'%}
+        <img  class=" mx-auto rounded" src="{{content.content_url}}" alt="animated gif" style="float: left; max-height: 100%; width:auto;" />
+    {% elif content.position == 'center'%}
+        <img  class=" mx-auto rounded" src="{{content.content_url}}" alt="animated gif" style="max-height: 100%; width:auto;"/>
+    {% elif content.position.value == 'right'%}
+        <img  class=" mx-auto rounded" src="{{content.content_url}}" alt="animated gif" style="float: right; max-height: 100%; width:auto;" />
+    {% else %}
+        <img  class=" mx-auto rounded" src="{{content.content_url}}" alt="animated gif" style="max-height: 100%; width:auto;"/>
+    {% endif %}
+{% endmacro %}
+
+{% macro content_group(content_group) %}
+    <div class="row m-3" style=" overflow:hidden;">
+        {% if content_group.heading %}
+            <div class="col-12" style="text-align: center;">
+                <h3 style="color: white;" >{{ content_group.heading }}</h3>
+            </div>
+        {% endif %}
+        {% for content in content_group.group_contents %}
+            {% if content.content_type.value == 'img'%}
+                <div class="col" style="display: flex; align-items:center;">
+                    {{ image_content(content) }}
+                </div>
+            {% endif %}
+            {% if content.content_type.value == 'text'%}
+                <div class="col" style="display: flex; align-items:center;">
+                    {{ text_content(content) }}
+                </div>
+            {% endif %}
+            {% if content.content_type.value == 'gif'%}
+                <div class="col" style="display: flex; align-items:center;">
+                    {{ gif_content(content) }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endmacro %}
