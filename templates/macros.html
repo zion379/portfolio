@@ -84,7 +84,7 @@
                 </div>
             {% endif %}
             {% if content.content_type.value == 'carousel'%}
-                <div class="col" style="display: flex; align-items:center;">
+                <div class="col" style="display: flex; align-items:center; justify-content:center;">
                     {{ carousel_content(content) }}
                 </div>
             {% endif %}
@@ -99,7 +99,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{content.carousel_items[0].desc}}</h5>
                 </div>
-                <img src="{{content.carousel_items[0].content_url}}" alt="">
+                <img src="{{content.carousel_items[0].content_url}}" alt="" style="max-width: 100%; display:block">
             </div>
             {% for item in content.carousel_items %}
                 {% if loop.index0 != 0 %}
@@ -107,7 +107,7 @@
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{item.desc}}</h5>
                         </div>
-                        <img src="{{item.content_url}}" alt="">
+                        <img src="{{item.content_url}}" alt="" style="max-width: 100%; display:block">
                     </div>
                 {% endif %}
             {% endfor %}

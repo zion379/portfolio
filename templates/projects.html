@@ -3,10 +3,13 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<section class="container justify-content-md-center">
-    <h1 class="display-2 text-center gy-1 text-light">{{page_title}}</h1>
-
+<section class="container">
 <div class="row container-fluid text-center p-2">
+  <div class="col-12">
+    <h1 class="display-2 text-center gy-1 text-light">{{page_title}}</h1>
+  </div>
+  
+  <div class="row" style="display: flex; justify-content:center;">
     {% for project in all_projects %}
     <div class="card bg-secondary col-md-4 col-sm-6 ms-2 me-2 mb-2" style="width: 18rem;">
       {% if project.thumbnail_src %}
@@ -30,6 +33,7 @@
         </div>
       </div>
     {% endfor %}
+  </div>
 </div>
 </section>
 {% endblock %}
