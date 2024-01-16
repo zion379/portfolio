@@ -13,6 +13,9 @@
             {% if content.content_type.value == 'group'%}
                 {{ content_group(content) }}
             {% endif %}
+            {% if content.content_type.value == 'carousel'%}
+                {{ carousel_content(content) }}
+            {% endif %}
         {% endfor %}
     <div>
 {% endmacro %}
@@ -22,13 +25,13 @@
         <img class="img-fluid rounded" style="float: left; max-width: 100%;" src="{{content.content_url}}" alt="">
     {% elif content.position == 'center'%}
         <div style="display: flex; justify-content:center">
-            <img class="img-fluid rounded" style=" max-width: 100%;" src="{{content.content_url}}" alt="">
+            <img class="img-fluid rounded m-3" style=" max-width: 100%;" src="{{content.content_url}}" alt="">
         </div>
     {% elif content.position.value == 'right'%}
             <img class="rounded" style="float:right; max-width: 100%;" src="{{content.content_url}}" alt="">
     {% else %}
         <div style="display: flex; justify-content:center;">
-            <img class="img-fluid rounded" src="{{content.content_url}}" alt="">
+            <img class="img-fluid rounded m-3" src="{{content.content_url}}" alt="">
         </div>
     {% endif %}
 {% endmacro %}
@@ -80,6 +83,42 @@
                     {{ gif_content(content) }}
                 </div>
             {% endif %}
+            {% if content.content_type.value == 'carousel'%}
+                <div class="col" style="display: flex; align-items:center;">
+                    {{ carousel_content(content) }}
+                </div>
+            {% endif %}
         {% endfor %}
+    </div>
+{% endmacro %}
+
+{% macro carousel_content(content) %}
+    <div id="{{content.content_title}}" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{content.carousel_items[0].desc}}</h5>
+                </div>
+                <img src="{{content.carousel_items[0].content_url}}" alt="">
+            </div>
+            {% for item in content.carousel_items %}
+                {% if loop.index0 != 0 %}
+                    <div class="carousel-item">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{item.desc}}</h5>
+                        </div>
+                        <img src="{{item.content_url}}" alt="">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#{{content.content_title}}" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#{{content.content_title}}" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
     </div>
 {% endmacro %}

@@ -7,6 +7,19 @@
     <h1 class="display-2 text-center gy-1 text-light">{{page_title}}</h1>
 
 <div class="row container-fluid text-center p-2">
+    {% for project in all_projects %}
+    <div class="card bg-secondary col-md-4 col-sm-6 ms-2 me-2 mb-2" style="width: 18rem;">
+      {% if project.thumbnail_src %}
+        <img src="{{project.thumbnail_src}}" alt="proj image" class="d-block w-100 rounded mt-2" style="height:fit-content; width:fit-content;">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title text-light">{{project.project_name}}</h5>
+        <p class="card-text text-light">{{project.project_desc}}</p>
+        <a href="/project_view/{{project.project_name}}" class="btn btn-primary">View Project</a>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- Legacy Method of showing project cards remove once replacement project is finished. -->
     {% for project in  project_titles%}
     <div class="card bg-secondary col-md-4 col-sm-6 ms-2 me-2" style="width: 18rem;">
         <img src="{{project_img_urls[loop.index0]}}" alt="smart mirror cover render" class="d-block w-100 rounded">
@@ -16,16 +29,6 @@
           <a href="{{project_Link[loop.index0]}}" class="btn btn-primary">View Project</a>
         </div>
       </div>
-    {% endfor %}
-    {% for project in all_projects %}
-    <div class="card bg-secondary col-md-4 col-sm-6 ms-2 me-2" style="width: 18rem;">
-      <!-- <img src="/project_view/{{project.project_name}}" alt="proj image" class="d-block w-100 rounded"> -->
-      <div class="card-body">
-        <h5 class="card-title text-light">{{project.project_name}}</h5>
-        <p class="card-text text-light">{{project.project_desc}}</p>
-        <a href="/project_view/{{project.project_name}}" class="btn btn-primary">View Project</a>
-      </div>
-    </div>
     {% endfor %}
 </div>
 </section>

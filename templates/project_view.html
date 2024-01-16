@@ -5,10 +5,10 @@
 
 <div class="container">
   <h1 class="text-light" style="text-align: center; margin-top: .4em;">{{project.project_name}}</h1>
-  {% if project.date %}
-    <h4>{{project.date}}</h4>
+  {% if project.project_date %}
+    <h4 class="text-light" style="text-align: center ;">{{project.project_date}}</h4>
   {% endif %}
-  <h5 class="text-light mt-3" style="text-align: center ;">{{project.project_desc}}</h5>
+  <h5 class="text-light mt-3" style="color: white; text-align: center ;">{{project.project_desc}}</h5>
   {% import 'macros.html'  as macros %}
   {{ macros.show_proj_content(project) }}
 </div>
