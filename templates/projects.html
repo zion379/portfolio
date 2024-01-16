@@ -4,14 +4,14 @@
 
 {% block body %}
 <section class="container">
-<div class="row container-fluid text-center p-2">
+<div class="row container-fluid text-center p-2" style="display: flex; justify-content:center;">
   <div class="col-12">
     <h1 class="display-2 text-center gy-1 text-light">{{page_title}}</h1>
   </div>
   
   <div class="row" style="display: flex; justify-content:center;">
     {% for project in all_projects %}
-    <div class="card bg-secondary col-md-4 col-sm-6 ms-2 me-2 mb-2" style="width: 18rem;">
+    <div class="card bg-secondary col-md-4 col-sm-4 ms-2 me-2 mb-2" style="width: 18rem;">
       {% if project.thumbnail_src %}
         <img src="{{project.thumbnail_src}}" alt="proj image" class="d-block w-100 rounded mt-2" style="height:fit-content; width:fit-content;">
       {% endif %}
@@ -24,7 +24,7 @@
     {% endfor %}
     <!-- Legacy Method of showing project cards remove once replacement project is finished. -->
     {% for project in  project_titles%}
-    <div class="card bg-secondary col-md-4 col-sm-6 ms-2 me-2" style="width: 18rem;">
+    <div class="card bg-secondary col-md-4 col-sm-4 ms-2 me-2" style="width: 18rem;">
         <img src="{{project_img_urls[loop.index0]}}" alt="smart mirror cover render" class="d-block w-100 rounded">
         <div class="card-body">
           <h5 class="card-title text-light">{{project_titles[loop.index0]}}</h5>
