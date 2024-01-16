@@ -102,10 +102,12 @@ blast_up_proj.add_content(blast_up_play_testing_group)
 
 #Robotics
 robotics_competing = Proj.Project_obj("competitive-robotics", "During Middle/Highschool I enoyed being a contributing member to the competitve robotics clubs. particpating in FTC events in middle school and FRC events in highschool.", project_date="2016-2017", thumbnail_src="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/robotics_3588_robot.JPG")
+
+robotics_competing_header_group = Proj.Content_group()
 hero_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/highschool-robotics-team-group.PNG", position=Proj.content_position.RIGHT)
+robotics_competing_header_group.add_content(hero_img)
 
-
-team_info_group = Proj.Content_group()
+team_info_group = Proj.Content_group(heading="Team 3588")
 team_bot_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/robotics_3588_robot.JPG")
 team_bot_side_view = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/team_bot_side_view.JPG")
 team_info_group.add_content(team_bot_side_view)
@@ -144,13 +146,13 @@ drive_system_design_group.add_content(bot_base_initial_design_img)
 drive_system_design_group.add_content(bot_cad_view_img)
 drive_system_design_group.add_content(bot_measurements_view_img)
 
-robotics_competing.add_content(hero_img)
+robotics_competing.add_content(robotics_competing_header_group)
 robotics_competing.add_content(team_info_group)
-robotics_competing.add_content(pre_comp_group)
 robotics_competing.add_content(pneumatic_system_group)
 robotics_competing.add_content(bot_climbing_mechanism_group)
 robotics_competing.add_content(bot_drive_system_group)
 robotics_competing.add_content(drive_system_design_group)
+robotics_competing.add_content(pre_comp_group)
 
 # Smart Mirror
 printed_smart_mirror_proj = Proj.Project_obj("3D Printed Smart Mirror",project_desc="This Mirrors casing is entierly 3D-printed making the mirror exceptionaly light. this mirror features include Chat-GPT, Augment Reality, Sound System, and More!", project_date="2022", thumbnail_src="https://live.staticflickr.com/65535/52727321385_a748270f52_b.jpg")
