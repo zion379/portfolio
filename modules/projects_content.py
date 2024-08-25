@@ -286,10 +286,22 @@ printed_smart_mirror_proj.add_content(mirror_software_group)
 
 #3D Printing
 
+# GNSS
+
+# Electric Bike Project
+electric_bikes_proj =  Proj.Project_obj("Electric-Bikes", "multiple scrapy working ebike builds. with the intentions of being a prototype. while we are currently working on the design of an offroad frame.","2023-2024") # add thumbnail later
+ebike_vid = Proj.proj_content_obj(Proj.proj_content_type.VIDEO,"E-Bike Build Video","https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/videos/Off_road_Ebike_Build.mp4",Proj.content_position.CENTER)
+ebike_vid_group = Proj.Content_group("E-Bike Build Vid")
+ebike_vid_group.add_content(ebike_vid)
+electric_bikes_proj.add_content(ebike_vid)
+
+# keep this section at the bottom of the file
 all_projects.append(printed_smart_mirror_proj)
 all_projects.append(blast_up_proj)
 all_projects.append(super_cube_proj)
 all_projects.append(teaching_proj)
 all_projects.append(EMP_proj)
 all_projects.append(robotics_competing)
+all_projects.append(electric_bikes_proj)
+
 

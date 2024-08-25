@@ -16,8 +16,20 @@
             {% if content.content_type.value == 'carousel'%}
                 {{ carousel_content(content) }}
             {% endif %}
+            {% if content.content_type.value == 'video'%}
+                {{ video_content(content) }}
+            {% endif %}
         {% endfor %}
     <div>
+{% endmacro %}
+
+{% macro video_content(content) %}
+    <div style="display:flex; justify-content: center;">
+        <video autoplay muted playsinline loop >
+            <source src="{{content.content_url}}" type="video/mp4">
+        </video>
+    </div>
+
 {% endmacro %}
 
 {% macro image_content(content) %}
