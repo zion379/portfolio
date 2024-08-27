@@ -86,5 +86,5 @@ def MirrorChat():
 #app.run(debug=True) # Comment this out if in produciton mode
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 

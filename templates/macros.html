@@ -24,12 +24,13 @@
 {% endmacro %}
 
 {% macro video_content(content) %}
-    <div style="display:flex; justify-content: center;">
-        <video autoplay muted playsinline loop >
-            <source src="{{content.content_url}}" type="video/mp4">
-        </video>
+    <div>
+        <div style="display:flex; justify-content: center; width: auto; height: auto;">
+            <video controls autoplay muted playsinline loop width="98%;"height="auto;">
+                <source src="{{content.content_url}}" type="video/mp4">
+            </video>
+        </div>
     </div>
-
 {% endmacro %}
 
 {% macro image_content(content) %}

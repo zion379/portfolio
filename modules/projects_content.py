@@ -291,7 +291,7 @@ printed_smart_mirror_proj.add_content(mirror_software_group)
 # Electric Bike Project
 electric_bikes_proj =  Proj.Project_obj("Electric-Bikes", "multiple scrapy working ebike builds. with the intentions of being a prototype. while we are currently working on the design of an offroad frame.","2023-2024") # add thumbnail later
 ebike_vid = Proj.proj_content_obj(Proj.proj_content_type.VIDEO,"E-Bike Build Video","https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/videos/Off_road_Ebike_Build.mp4",Proj.content_position.CENTER)
-ebike_vid_group = Proj.Content_group("E-Bike Build Vid")
+ebike_vid_group = Proj.Content_group("E-Bike Build Vid") # remove vid content group soon.
 ebike_vid_group.add_content(ebike_vid)
 electric_bikes_proj.add_content(ebike_vid)
 

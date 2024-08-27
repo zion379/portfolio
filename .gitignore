@@ -1,3 +1,4 @@
 portfolio_venv/
 modules/__pycache__/
 .env
+modules/__pycache__/projects_content.cpython-39.pyc
