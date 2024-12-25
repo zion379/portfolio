@@ -1,5 +1,16 @@
 {% extends 'base.html'%}
-{% block head %}{% endblock %}
+{% block head %}
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module" src="/static/JS_files/model_viewer.js"></script>
+{% endblock %}
 
 {% block body %}
 

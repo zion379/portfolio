@@ -7,6 +7,7 @@ class proj_content_type(Enum):
     GIF = "gif"
     GROUP = "group"
     CAROUSEL = "carousel"
+    MODEL = "model"
 
 
 class content_position(Enum):

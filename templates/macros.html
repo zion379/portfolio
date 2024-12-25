@@ -19,8 +19,17 @@
             {% if content.content_type.value == 'video'%}
                 {{ video_content(content) }}
             {% endif %}
+            {% if content.content_type.value == 'model'%}
+                {{ model_content(content) }}
+            {% endif %}
         {% endfor %}
     <div>
+{% endmacro %}
+
+{% macro model_content(content) %}
+    <div>
+
+    </div>
 {% endmacro %}
 
 {% macro video_content(content) %}

@@ -286,14 +286,45 @@ printed_smart_mirror_proj.add_content(mirror_software_group)
 
 #3D Printing
 
-# GNSS
-
 # Electric Bike Project
 electric_bikes_proj =  Proj.Project_obj("Electric-Bikes", "multiple scrapy working ebike builds. with the intentions of being a prototype. while we are currently working on the design of an offroad frame.","2023-2024") # add thumbnail later
 ebike_vid = Proj.proj_content_obj(Proj.proj_content_type.VIDEO,"E-Bike Build Video","https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/videos/Off_road_Ebike_Build.mp4",Proj.content_position.CENTER)
 ebike_vid_group = Proj.Content_group("E-Bike Build Vid") # remove vid content group soon.
 ebike_vid_group.add_content(ebike_vid)
 electric_bikes_proj.add_content(ebike_vid)
+
+# GNSS
+GNSS_proj = Proj.Project_obj('GNSS-Recievier', 'Custom surveying GNSS reciever with data logging capabilities.', '2023','https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/IMG_6144.HEIC')
+
+gnss_header_group = Proj.Content_group()
+gnss_header_proj_desc = Proj.proj_content_obj(Proj.proj_content_type.TEXT, text_content="This GNSS Recievier is cablable of less than 1cm of accuracy. This project was created as an alternative to purchasing an existing GNSS reciever currently on the market to avoid the high cost of these tools commercially available. This project is currently used for photogrammetry projects with, https://www.high-altitude-media.com", position=Proj.content_position.CENTER)
+custom_reciever_device_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE,content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00577.JPG",position= Proj.content_position.CENTER)
+
+gnss_header_group.add_content(gnss_header_proj_desc)
+gnss_header_group.add_content(custom_reciever_device_img)
+
+gnss_build_group = Proj.Content_group(heading="Reciever Devlopment/Manufacturing")
+gnss_build_carousel = Proj.Carousel_obj(content_title="Build_Photos")
+
+device_upper_half_electronics_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/IMG_6143.jpg",desc="Preping for testing device functionality outdoors, simple UI as of now for testing device features.")
+device_break_down_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/IMG_6138.jpg",desc="Device upper Section, where SD Card, MicroProcessor, Power and Data Lines mount to upper frame of device.")
+device_mid_sec_rear_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00571.JPG", desc="3D Printed Rear Mid Section of Case")
+device_bottom_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00573.JPG", desc="device bottom - GNSS Debug Ports for Configuring ublox chip.")
+device_upper_cabling_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00572.JPG", desc="GNSS innner initial cabling.")
+
+
+gnss_build_carousel.add_item(device_upper_half_electronics_img)
+gnss_build_carousel.add_item(device_break_down_img)
+gnss_build_carousel.add_item(device_upper_cabling_img)
+gnss_build_carousel.add_item(device_mid_sec_rear_img)
+gnss_build_carousel.add_item(device_bottom_img)
+
+
+gnss_build_group.add_content(gnss_build_carousel)
+
+GNSS_proj.add_content(gnss_header_group)
+GNSS_proj.add_content(gnss_build_group)
+
 
 # keep this section at the bottom of the file
 all_projects.append(printed_smart_mirror_proj)
@@ -303,5 +334,6 @@ all_projects.append(teaching_proj)
 all_projects.append(EMP_proj)
 all_projects.append(robotics_competing)
 all_projects.append(electric_bikes_proj)
+all_projects.append(GNSS_proj)
 
 
