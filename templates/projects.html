@@ -17,6 +17,7 @@
       {% endif %}
       <div class="card-body">
         <h5 class="card-title text-light">{{project.project_name}}</h5>
+        <h6 class="card-text text-light">{{project.project_date}}</h6>
         <p class="card-text text-light">{{project.project_desc}}</p>
         <a href="/project_view/{{project.project_name}}" class="btn btn-primary">View Project</a>
       </div>
@@ -31,9 +32,3 @@
           <p class="card-text text-light">{{project_Descriptions[loop.index0]}}</p>
           <a href="{{project_Link[loop.index0]}}" class="btn btn-primary">View Project</a>
         </div>
-      </div>
-    {% endfor %}
-  </div>
-</div>
-</section>
-{% endblock %}

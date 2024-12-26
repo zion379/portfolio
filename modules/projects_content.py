@@ -51,7 +51,14 @@ EMP_proj.add_content(experiment_results_group)
 #Teaching Project
 teaching_proj = Proj.Project_obj("Instructor", "Instructor for Digipen Instituite of technology.", project_date="2021-2022")
 teaching_desc = Proj.proj_content_obj(Proj.proj_content_type.TEXT, text_content="Taught in person at two school and online classes.")
+gamedev_instructing_group = Proj.Content_group(heading="Game Development and Programming")
+
+doughnut_invaders_tutorial = Proj.proj_content_obj(Proj.proj_content_type.PDF,content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/documentation/Make%20Code%20Arcade%20-%20Doughnut%20Invaders.pdf",text_content="Self guided tutorial created for my students.")
+
+
 teaching_proj.add_content(teaching_desc)
+teaching_proj.add_content(gamedev_instructing_group)
+teaching_proj.add_content(doughnut_invaders_tutorial)
 
 #Game Dev
 #Super Cube Game
@@ -101,7 +108,7 @@ blast_up_proj.add_content(blast_up_play_testing_group)
 #App Dev
 
 #Robotics
-robotics_competing = Proj.Project_obj("competitive-robotics", "During Middle/Highschool I enoyed being a contributing member to the competitve robotics clubs. particpating in FTC events in middle school and FRC events in highschool.", project_date="2016-2017", thumbnail_src="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/robotics_3588_robot.JPG")
+robotics_competing = Proj.Project_obj("competitive-robotics", "During Middle/Highschool I enoyed being a contributing member to the competitve robotics clubs. particpating in FTC events in middle school and FRC events in highschool.", project_date="2014-2017", thumbnail_src="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/robotics_3588_robot.JPG")
 
 robotics_competing_header_group = Proj.Content_group()
 hero_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/highschool-robotics-team-group.PNG", position=Proj.content_position.RIGHT)
@@ -318,22 +325,3 @@ gnss_build_carousel.add_item(device_break_down_img)
 gnss_build_carousel.add_item(device_upper_cabling_img)
 gnss_build_carousel.add_item(device_mid_sec_rear_img)
 gnss_build_carousel.add_item(device_bottom_img)
-
-
-gnss_build_group.add_content(gnss_build_carousel)
-
-GNSS_proj.add_content(gnss_header_group)
-GNSS_proj.add_content(gnss_build_group)
-
-
-# keep this section at the bottom of the file
-all_projects.append(printed_smart_mirror_proj)
-all_projects.append(blast_up_proj)
-all_projects.append(super_cube_proj)
-all_projects.append(teaching_proj)
-all_projects.append(EMP_proj)
-all_projects.append(robotics_competing)
-all_projects.append(electric_bikes_proj)
-all_projects.append(GNSS_proj)
-
-

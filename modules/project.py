@@ -8,7 +8,7 @@ class proj_content_type(Enum):
     GROUP = "group"
     CAROUSEL = "carousel"
     MODEL = "model"
-
+    PDF = "pdf"
 
 class content_position(Enum):
     LEFT = "left"
@@ -55,4 +55,4 @@ class Content_group:
         self.heading = heading
     
     def add_content(self, new_content: proj_content_obj):
-        self.group_contents.append(new_content)
+        self.group_contents.appe
