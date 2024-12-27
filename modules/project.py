@@ -55,4 +55,4 @@ class Content_group:
         self.heading = heading
     
     def add_content(self, new_content: proj_content_obj):
-        self.group_contents.appe
+        self.group_contents.append(new_content)

@@ -325,3 +325,22 @@ gnss_build_carousel.add_item(device_break_down_img)
 gnss_build_carousel.add_item(device_upper_cabling_img)
 gnss_build_carousel.add_item(device_mid_sec_rear_img)
 gnss_build_carousel.add_item(device_bottom_img)
+
+
+gnss_build_group.add_content(gnss_build_carousel)
+
+GNSS_proj.add_content(gnss_header_group)
+GNSS_proj.add_content(gnss_build_group)
+
+
+# keep this section at the bottom of the file
+all_projects.append(printed_smart_mirror_proj)
+all_projects.append(blast_up_proj)
+all_projects.append(super_cube_proj)
+all_projects.append(teaching_proj)
+all_projects.append(EMP_proj)
+all_projects.append(robotics_competing)
+all_projects.append(electric_bikes_proj)
+all_projects.append(GNSS_proj)
+
+
