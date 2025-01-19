@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Car Tracker</title>
+
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css" rel="stylesheet">
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+
+#map { position:absolute; bottom: 0; width: 100%;  height:70%;}
+
+@media screen and (max-width: 768px) {
+    #map { position:absolute; bottom: 0; width: 100%;  height:66%;}
+}
+
+.info_text {color: white;}
+
+</style>
+{% endblock %}
+
+{% block body %}
+    <h1 style="color: white; padding-top: 10px;" class="text-center">car tracker app</h1>
+    <div style="width: 100%; height: 50px; padding-top:2px; padding-bottom:2px; margin-bottom: 10px;" class="text-center">
+        <div style="float: inline-start;">
+            <p class="info_text" style="padding-left:5px;">Last update: {{day}} / {{month}} / {{year}}</p>
+            <p class="info_text">hour: {{hour}} min {{min}} sec{{sec}}</p>
+            <p class="info_text"> Satellites: {{sat_v}}</p>
+        </div>
+        <div style="float:inherit;">
+            
+        </div>
+        <div style="float: inline-end; padding-right:5px;" class="text-center">
+            <p class="info_text">Speed: {{mph}}mph</p>
+            <p class="info_text">Course Deg: {{course_deg}}deg</p>
+            <p class="info_text">Altitude: {{altitude_miles}} Miles</p>
+        </div>
+    </div>
+    
+    <div id="map"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiemlvbjM3OSIsImEiOiJjbTYzeTZ2ZTIxNDl2MmlxNHMxbm5xbXh2In0.KuUWjTWz_csJDdd7RwmoZw';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/dark-v11',
+            center: [parseFloat('{{long}}'), parseFloat('{{lat}}')], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+            zoom: 16 // starting zoom
+        });
+
+        map.on('style.load', () => {
+
+            map.addLayer({
+                id: 'circle-layer',
+                type: 'circle',
+                source: {
+                  type: 'geojson',
+                  data: {
+                    type: 'FeatureCollection',
+                    features: [
+                      {
+                        type: 'Feature',
+                        geometry: {
+                          type: 'Point',
+                          coordinates: [parseFloat('{{long}}'), parseFloat('{{lat}}')]
+                        }
+                      }
+                    ]
+                  }
+                },
+                paint: {
+                  'circle-pitch-scale': 'viewport',
+                  'circle-radius': 10,
+                  'circle-color': '#4264fb',
+                  'circle-opacity': 0.1,
+                }
+              });
+
+              map.setConfigProperty('basemap', 'lightPreset', 'dusk');
+        });
+
+        // Create a default Marker and add it to the map.
+        const marker1 = new mapboxgl.Marker({color: 'black'})
+        .setLngLat([parseFloat('{{long}}'), parseFloat('{{lat}}')])
+        .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+                `
+                <div class="text-center">
+                <h6>🏎️ car</h6>
+                <p>{{lat}}, {{long}}</p>
+                <p>Altitude: {{altitude_f}}ft - MSL<p>
+                </div>
+                `
+      )
+  )
+        .addTo(map);
+
+        
+
+    </script>
+{% endblock %}

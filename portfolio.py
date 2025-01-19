@@ -82,6 +82,120 @@ def MirrorCompletions():
 def MirrorChat():
     return render_template("gpt_completions.html")
 
+# experimental routes
+# car tracker app data stream
+gps_tracker_stream: str = "dd"
+@app.route('/car-tracker-stream', methods=["GET"])
+def car_tracker_stream():
+    with open('static/Experimental/gps_stream.txt', "r") as file:
+        contents = file.read()
+
+    return contents
+
+
+@app.route('/update-tracker-stream/<stream>', methods=['GET','POST'])
+def update_tracker_stream(stream:str):
+    gps_tracker_stream = stream
+
+    with open('static/Experimental/gps_stream.txt', "w") as file:
+        file.write(stream)
+
+    print(gps_tracker_stream)
+    return gps_tracker_stream
+
+@app.route('/car-tracker-app', methods=['GET'])
+def car_tracker_app():
+
+    lat: float = 0
+    long: float = 0
+    course_deg: float = 0
+    mph: float = 0
+    month: int = 0
+    day: int = 0
+    year: int = 0
+    altitude_f: float = 0
+    altitude_m: float = 0
+    hour: int = 0
+    min: int = 0
+    sec: int = 0
+    sat_v: int = 0
+    sat_age: int = 0
+
+    opening_brackets_list:list = []
+    closing_brackets_list:list = []
+
+    # open stream data
+    with open('static/Experimental/gps_stream.txt', "r") as file:
+        contents = file.read()
+        
+        char_index:int = 0
+
+        for c in contents:
+            # check for open brackets
+            if c == '[':
+                opening_brackets_list.append(char_index)
+            # check for close brackets
+            if c == ']':
+                closing_brackets_list.append(char_index)
+            char_index += 1
+
+        # seperate packets
+        # bracket list open bracket 0..1, close bracket x..0
+        packet_1 = contents[opening_brackets_list[1]:closing_brackets_list[0] + 1]
+        packet_2 = contents[opening_brackets_list[2]:closing_brackets_list[1] + 1]
+
+        #remove brackets
+        packet_1 = packet_1[1:len(packet_1)-1]
+        packet_2 = packet_2[1:len(packet_1)-1]
+
+        # seperate data
+        packet_1_data: list[str] = [str(x) for  x in packet_1.split(",")]
+        packet_2_data: list[str] = [str(x) for  x in packet_2.split(",")]
+
+        # remove string commas
+        char_index = 0
+        for data in packet_1_data:
+            data = data.replace("'","")
+            packet_1_data[char_index] = data
+            char_index += 1
+            #print(data)
+
+        char_index = 0
+        for data in packet_2_data:
+            data = data.replace("'","")
+            packet_2_data[char_index] = data
+            char_index += 1
+            #print(data)
+    
+
+        #print("packet 1 = " + str(packet_1_data))
+        #print("packet 2 = " + str(packet_2_data))
+
+        # save data
+
+        lat = packet_1_data[0]
+        long = packet_1_data[1]
+        altitude_miles = packet_1_data[2]
+        course_deg = packet_1_data[3]
+        mph = packet_1_data[4]
+        month = packet_1_data[5]
+        day = packet_1_data[6]
+        year = packet_1_data[7]
+        altitude_f = packet_2_data[0]
+        altitude_m = packet_2_data[1]
+        hour = packet_2_data[2]
+        min = packet_2_data[3]
+        sec = packet_2_data[4]
+        sat_v = packet_2_data[6]
+        sat_age = packet_2_data[8]
+
+
+        #print(sat_age)
+
+
+    return render_template('car_tracker_app.html', lat=lat, long=long, altitude_miles=altitude_miles, course_deg=course_deg, mph=mph, month=month, day=day, year=year, altitude_f=altitude_f, altitude_m=altitude_m, hour=hour, min=min, sec=sec, sat_v=sat_v)
+
+
 
 #app.run(debug=True) # Comment this out if in produciton mode
 
