@@ -266,7 +266,7 @@ def item_tracker_create_item():
     print(f"created {item_name}")
     return f'created {item_name}'
 
-app.run(debug=True) # Comment this out if in produciton mode
+#app.run(debug=True) # Comment this out if in produciton mode
 
 if __name__ == '__main__':
     app.run(debug=True)
