@@ -4,6 +4,7 @@ import json
 import os
 from modules import projects_content
 from modules import project as Proj
+from modules.item_tracker_app import item_tracker
 
 app = Flask(__name__)
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -195,9 +196,77 @@ def car_tracker_app():
 
     return render_template('car_tracker_app.html', lat=lat, long=long, altitude_miles=altitude_miles, course_deg=course_deg, mph=mph, month=month, day=day, year=year, altitude_f=altitude_f, altitude_m=altitude_m, hour=hour, min=min, sec=sec, sat_v=sat_v)
 
+item_tracker_app = item_tracker.Item_tracker_manager()
+
+# items Tracker app
+@app.route('/item-tracker', methods=["GET"])
+def item_tracker():
+    return render_template('item_tracker_app/item_tracker.html', tracked_items=item_tracker_app.items)
+
+@app.route('/item-tracker-increase-item-count/<item_name>', methods=['GET', 'POST'])
+def item_tracker_increase_item_count(item_name:str):
+    item_tracker_app.increase_item_count(item_name, "Anonymous") # update to where tech is populated
+    return item_name
+
+@app.route('/item-tracker-decrease-item-count/<item_name>', methods=['GET', 'POST'])
+def item_tracker_decrease_item_count(item_name:str):
+    item_tracker_app.decrease_item_count(item_name, "Anonymous") # update to where tech is populated
+    return item_name
+
+@app.route('/item-tracker-config', methods=["GET"])
+def item_tracker_config():
+    return render_template('item_tracker_app/item_tracker_config.html', tracked_items=item_tracker_app.items)
 
 
-#app.run(debug=True) # Comment this out if in produciton mode
+@app.route('/item-tracker-config/edit-name/', methods=["GET", "POST"])
+def item_tracker_edit_item_name():
+    item = request.args.get('item')
+    new_name = request.args.get('name')
+    item_tracker_app.update_item_name(item, new_name)
+
+    return f'updated {item} name to {new_name}'
+
+
+@app.route('/item-tracker-config/set-count/', methods=["POST", "GET"])
+def item_tracker_set_count():
+    count:int = request.args.get('count')
+    item_name = request.args.get('item')
+    item_tracker_app.set_item_count(item_name, count)
+    print(f"{count} , {item_name}")
+    return f'updated {item_name} count to {count}'
+
+@app.route('/item-tracker-config/set-goal/', methods=["POST", "GET"])
+def item_tracker_set_goal():
+    goal:int = request.args.get('goal')
+    item_name = request.args.get('item')
+    item_tracker_app.set_item_goal(item_name, goal)
+    print(f"{goal} , {item_name}")
+    return f'updated {item_name} goal to {goal}'
+
+@app.route('/item-tracker-config/set-note/', methods=["POST", "GET"])
+def item_tracker_set_note():
+    note:str = request.args.get('notes')
+    item_name = request.args.get('item')
+    item_tracker_app.set_item_note(item_name, note)
+    print(f"{note} , {item_name}")
+    return f'updated {item_name} goal to {note}'
+
+@app.route('/item-tracker-config/delete-item/', methods=["POST", "GET"])
+def item_tracker_delete_item():
+    item_name = request.args.get('item')
+    item_tracker_app.remove_item(item_name)
+    print(f"deleted {item_name}")
+    return f'deleted {item_name}'
+
+
+@app.route('/item-tracker-config/create-item/', methods=["POST", "GET"])
+def item_tracker_create_item():
+    item_name = request.args.get('item')
+    item_tracker_app.create_new_item(item_name)
+    print(f"created {item_name}")
+    return f'created {item_name}'
+
+app.run(debug=True) # Comment this out if in produciton mode
 
 if __name__ == '__main__':
     app.run(debug=True)

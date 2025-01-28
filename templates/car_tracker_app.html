@@ -46,7 +46,7 @@ body { margin: 0; padding: 0; }
             container: 'map', // container ID
             style: 'mapbox://styles/mapbox/dark-v11',
             center: [parseFloat('{{long}}'), parseFloat('{{lat}}')], // starting position [lng, lat]. Note that lat must be set between -90 and 90
-            zoom: 16 // starting zoom
+            zoom: 10 // starting zoom
         });
 
         map.on('style.load', () => {
@@ -82,7 +82,7 @@ body { margin: 0; padding: 0; }
 
         // Create a default Marker and add it to the map.
         const marker1 = new mapboxgl.Marker({color: 'black'})
-        .setLngLat([parseFloat('{{long}}'), parseFloat('{{lat}}')])
+        .setLngLat([parseFloat('-122.33617'), parseFloat('47.69065')])
         .setPopup(
             new mapboxgl.Popup({ offset: 25 }) // add popups
             .setHTML(

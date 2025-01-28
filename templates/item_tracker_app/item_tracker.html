@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        .tracked_items_list h2 {
+            color: white;
+            text-align: center;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .tracked_items_list h3 {
+            color:white;
+            text-align: start;
+            margin-inline-start: 5px;
+            margin-inline-end: 5px;
+
+        }
+
+        .tracked_items_list h5 {
+            color:white;
+            text-align: start;
+            margin-inline-start: 5px;
+            margin-bottom: 0px;
+        }
+
+        .tracked_items_list h6 {
+            color:white;
+            text-align: start;
+            margin-inline-start: 5px;
+            margin-inline-end: 5px;
+        }
+
+        .tracked_items_list p {
+            color:white;
+            text-align: start;
+            margin-inline-start: 5px;
+            margin-inline-end: 5px;
+        }
+
+        .item_container {
+            margin-top: 10px;
+            margin-inline-start: 5px;
+            background-color: rgb(56, 86, 133);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .item_modify_controls {
+            display:inline-flex;
+        }
+
+        .item_modify_controls button {
+            margin-inline-start: 5px;
+            background-color: rgb(23, 106, 94);
+            color: white;
+            border-color: rgb(14, 67, 42);
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="tracked_items_list">
+        <script>
+             async function increase_item_count(item_name) {
+                try {
+                    const response = await fetch ('/item-tracker-increase-item-count/'+item_name, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(item_name)
+                    });
+
+                    if (response.ok) {
+                        console.log("updated item count");
+                    }
+
+                    window.location.reload();
+                } catch (error) {
+                    console.error('Error:', error)
+                }
+            }
+
+            async function decreaase_item_count(item_name) {
+                try {
+                    const response = await fetch ('/item-tracker-decrease-item-count/'+item_name, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(item_name)
+                    });
+
+                    if (response.ok) {
+                        console.log("updated item count");
+                    }
+
+                    window.location.reload();
+                } catch (error) {
+                    console.error('Error:', error)
+                }
+            }
+
+        </script>
+
+        <h2>Tracked Items</h2>
+        <div style="text-align: center;">
+            {% for item in tracked_items%}
+            <div>
+                <div class="item_container">
+                    <h2>{{item.item_name}}</h2>
+                    {% if item.item_notes != ""%}
+                        <p>note: {{item.item_notes}}</p>
+                    {% endif %}
+                    <div style="display:inline-flexbox;">
+                        <div class="item_modify_controls">
+                            <h5>Count: {{item.item_count}}</h5>
+                            <button class="btn" onclick="increase_item_count('{{item.item_name}}')">+</button>
+                            <button class="btn" onclick="decreaase_item_count('{{item.item_name}}')">-</button>
+                        </div>
+                    {% if item.goal != 0 %}
+                        <h6>Goal: {{item.goal}}</h6>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <button class="btn" style="background-color: red;">
+            <a href="/item-tracker-config"><h6 style="font-weight: bold;">Items Configuration</h6></a>
+        </button>
+        
+
+    </div>
+
+{% endblock %}

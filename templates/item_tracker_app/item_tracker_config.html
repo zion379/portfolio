@@ -1,0 +1,425 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        h1 {
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #control_panel {
+            background-color: rgb(70, 107, 58);
+            color: white;
+        }
+
+        .edit_field button {
+            margin-inline-start: 5px;
+            text-wrap:nowrap;
+            margin-inline-end: 5px;
+            background-color: rgb(143, 141, 38);
+        }
+
+        .edit_field {
+            margin-bottom: 5px;
+            display: inline-flex;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+<script>
+    async function update_app_data(url) {
+        try {
+            const response = await fetch (url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body:''
+            });
+
+            if (response.ok) {
+                console.log("updated item");
+            }
+
+            window.location.reload();
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    }
+
+    async function create_new_item(url, item_name) {
+        try {
+            const response = await fetch (url+item_name, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(item_name)
+            });
+
+            if (response.ok) {
+                console.log("created new item " + item_name);
+            }
+
+            window.location.reload();
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    }
+
+    // Item Name
+    async function update_item_name(item_name) {
+        // turn off edit button
+        document.getElementById(`edit_name_btn_${item_name}`).disabled = true;
+
+        name_edit_field = document.getElementById(`edit_name_div_${item_name}`);
+
+        name_input_field = document.createElement("input");
+        name_input_field.id = `name_text_field_${item_name}`;
+        name_input_field.placeholder = "New Name";
+
+        confirm_btn = document.createElement("button");
+        confirm_btn.id = `name_cfrm_btn_${item_name}`;
+        confirm_btn.textContent = "confirm name";
+        confirm_btn.onclick = function() {
+            confirm_new_item_name(item_name ,name_input_field.value);
+        } 
+
+        cancel_btn = document.createElement("button");
+        cancel_btn.id =  `name_cancel_btn_${item_name}`;
+        cancel_btn.textContent = "cancel";
+        cancel_btn.onclick = function() {
+            name_input_field.remove();
+            confirm_btn.remove();
+            cancel_btn.remove();
+
+             // turn on edit button
+        document.getElementById(`edit_name_btn_${item_name}`).disabled = false;
+        }
+
+        name_edit_field.appendChild(name_input_field);
+        name_edit_field.appendChild(confirm_btn);
+        name_edit_field.appendChild(cancel_btn);
+    }
+
+    async function confirm_new_item_name(item_name, new_name) {
+        if(new_name != '') {
+            const url = '/item-tracker-config/edit-name/'
+            const queryparams = new URLSearchParams({
+                item: item_name,
+                name: new_name
+            });
+
+            const urlWithParams = `${url}?${queryparams.toString()}`;
+            update_app_data(urlWithParams);
+        } else {
+            console.log(`new name input empty ${new_name}`);
+        }
+    }
+
+
+    // count
+    async function reset_count(item_name) {
+        const url = '/item-tracker-config/set-count/'
+
+        const queryparams = new URLSearchParams({
+            item: item_name,
+            count: 0
+        });
+
+        const urlWithParams = `${url}?${queryparams.toString()}`;
+        update_app_data(urlWithParams);
+    }
+
+    async function open_set_count_input(item_name) {
+        // hide reset , edit buttons
+        edit_count_btn = document.getElementById(`edit_count_btn_${item_name}`);
+        reset_btn = document.getElementById(`reset_count_btn_${item_name}`);
+
+        edit_count_btn.disabled = true;
+        reset_btn.disabled = true;
+
+        parent = document.getElementById(`count_edit_${item_name}`);
+
+        // create text field
+        set_count_input = document.createElement("input");
+        set_count_input.id = `set_count_input_${item_name}`;
+        set_count_input.placeholder = "New Count Value";
+        // create confirm btn
+        confrim_count_btn = document.createElement("button");
+        confrim_count_btn.id = `cfrm_count_btn_${item_name}`;
+        confrim_count_btn.textContent = "Confirm";
+        confrim_count_btn.onclick = function() {
+            if(set_count_input.value != '') {
+                set_count(item_name, set_count_input.value);
+            } else {
+                print("count value empty");
+            }
+            
+        }
+        // create cancel btn
+        cancel_btn = document.createElement("button");
+        cancel_btn.id = `cancel_count_btn_${item_name}`;
+        cancel_btn.textContent = "Cancel"
+        cancel_btn.onclick = function() {
+            set_count_input.remove();
+            confrim_count_btn.remove();
+            cancel_btn.remove();
+
+            edit_count_btn.disabled = false;
+            reset_btn.disabled = false;
+        }
+
+        parent.appendChild(set_count_input);
+        parent.appendChild(confrim_count_btn);
+        parent.appendChild(cancel_btn);
+
+
+    }
+
+    async function set_count(item_name, value) {
+        const url = '/item-tracker-config/set-count/'
+
+        const queryparams = new URLSearchParams({
+            item: item_name,
+            count: value
+        });
+
+        const urlWithParams = `${url}?${queryparams.toString()}`;
+        update_app_data(urlWithParams);
+    }
+
+    // set goal
+    async function open_set_goal_menu(item_name) {
+        parent = document.getElementById(`${item_name}_goal_edit`);
+
+        // disable edit btn
+        edit_btn = document.getElementById(`${item_name}_goal_btn`);
+        edit_btn.disabled = true;
+
+        // create goal input
+        goal_input = document.createElement("input");
+        goal_input.id = `goal_input_${item_name}`;
+        goal_input.placeholder = "New Goal Value"
+        // create confirm btn
+        goal_confrim_btn = document.createElement("button");
+        goal_confrim_btn.id = `goal_confirm_btn_${item_name}`;
+        goal_confrim_btn.textContent = "confirm";
+        goal_confrim_btn.onclick = function() {
+            if(goal_input.value != '') {
+                set_goal(item_name, goal_input.value)
+
+                edit_btn.disabled = false;
+
+                goal_input.remove();
+                goal_confrim_btn.remove();
+                cancel_btn.remove();
+            }
+        }
+
+        // create delete btn
+        cancel_btn = document.createElement("button");
+        cancel_btn.id = `goal_cancel_btn_${item_name}`;
+        cancel_btn.textContent = "cancel";
+        cancel_btn.onclick = function () {
+            edit_btn.disabled = false;
+
+            goal_input.remove();
+            goal_confrim_btn.remove();
+            cancel_btn.remove();
+        }
+
+        parent.appendChild(goal_input);
+        parent.appendChild(goal_confrim_btn);
+        parent.appendChild(cancel_btn);
+    }
+
+    async function set_goal(item_name, value) {
+        const url = '/item-tracker-config/set-goal/'
+
+        const queryparams = new URLSearchParams({
+            item: item_name,
+            goal: value
+        });
+
+        const urlWithParams = `${url}?${queryparams.toString()}`;
+        update_app_data(urlWithParams);
+    }
+
+    // notes
+    async function open_notes_edit_menu(item_name) {
+        parent = document.getElementById(`${item_name}_note_edit`);
+
+        // disable edit note btn
+        edit_note_btn = document.getElementById(`${item_name}_note_edit_btn`);
+        edit_note_btn.disabled = true;
+        
+        // create notes input
+        note_input = document.createElement("input");
+        note_input.id = `note_input_${item_name}`;
+        note_input.placeholder = "New Note"
+
+        // create confirm btn
+        confirm_btn = document.createElement("button");
+        confirm_btn.id = `confirm_btn_note_${item_name}`;
+        confirm_btn.textContent = "comfirm";
+        confirm_btn.onclick = function() {
+            if(note_input.value != '') {
+                set_note(item_name, note_input.value);
+
+                edit_note_btn.disabled = false;
+
+                note_input.remove();
+                confirm_btn.remove();
+                cancel_btn.remove();
+            }
+        }
+        // create cancel btn
+        cancel_btn = document.createElement("button");
+        cancel_btn.id = `note_cancel_btn_${item_name}`;
+        cancel_btn.textContent = "cancel";
+        cancel_btn.onclick = function() {
+            edit_note_btn.disabled = false;
+
+            note_input.remove();
+            confirm_btn.remove();
+            cancel_btn.remove();
+        }
+
+        parent.appendChild(note_input);
+        parent.appendChild(confirm_btn);
+        parent.appendChild(cancel_btn);
+    }
+
+    async function set_note(item_name, note) {
+        const url = '/item-tracker-config/set-note/'
+
+        const queryparams = new URLSearchParams({
+            item: item_name,
+            notes: note
+        });
+
+        const urlWithParams = `${url}?${queryparams.toString()}`;
+        update_app_data(urlWithParams);
+    }
+
+    // delete item
+    async function delete_item(item_name) {
+        const url = '/item-tracker-config/delete-item/'
+
+        const queryparams = new URLSearchParams({
+            item: item_name
+        });
+
+        const urlWithParams = `${url}?${queryparams.toString()}`;
+        update_app_data(urlWithParams);
+    }
+
+    // create item
+    async function create_item_menu() {
+        // disable create button
+        create_btn = document.getElementById("create_new_item_btn");
+        create_btn.disabled = true;
+
+        parent = document.getElementById(`create_item_menu`);
+        // create text field for item name
+        create_item_name_input = document.createElement("button");
+        create_item_name_input.placeholder = "Item Name"
+
+        // create confirm btn
+        confirm_btn = document.createElement("button");
+        confirm_btn.textContent = "confirm"
+        confirm_btn.textContent = function() {
+            if(create_item_name_input.value != '') {
+                create_item(create_item_name_input.value);
+
+                create_btn.disabled = false;
+
+                create_item_name_input.remove();
+                confirm_btn.remove();
+                cancel_btn.remove();
+            }
+        }
+
+        // create cancel btn
+        cancel_btn = document.createElement("button");
+        cancel_btn.textContent = "cancel";
+        cancel_btn.onclick =  function () {
+            create_btn.disabled = false;
+
+            create_item_name_input.remove();
+            confirm_btn.remove();
+            cancel_btn.remove();
+        }
+
+        parent.appendChild(create_item_name_input);
+        
+    }
+
+    async function create_item(item_name) {
+        const url = '/item-tracker-config/create-item/'
+
+        const queryparams = new URLSearchParams({
+            item: item_name
+        });
+
+        const urlWithParams = `${url}?${queryparams.toString()}`;
+        update_app_data(urlWithParams);
+    }
+
+
+</script>
+    <h1>Tracked Items Configuration</h1>
+    <div id="control_panel">
+        <!-- show all current tracked items-->
+        {% for item in tracked_items %}
+            <div style="background-color: rgb(45, 69, 37); margin-bottom: 12px;">
+                <div style="display: inline-flex; margin-top:5px; margin-bottom:3px; margin-inline-start:3px;" id="edit_name_div_{{item.item_name}}">
+                    <h2 style="text-wrap:nowrap">{{item.item_name}}</h2>
+                    <button class="btn" id="edit_name_btn_{{item.item_name}}" style="margin-inline-start: 15px;" onclick="update_item_name('{{item.item_name}}','test')">Edit Name</button>
+                </div>
+                <div style="display:inline-flexbox; margin-inline-start:5px;">
+                    <div class="edit_field" id="count_edit_{{item.item_name}}">
+                        <h5>Count: {{item.item_count}}</h5>
+                        <button class="btn" id="edit_count_btn_{{item.item_name}}" onclick="open_set_count_input('{{item.item_name}}')">Edit Count</button>
+                        <button class="btn" id="reset_count_btn_{{item.item_name}}" onclick="reset_count('{{item.item_name}}')">Reset Count</button>
+                    </div>
+                    <div class="edit_field" id="{{item.item_name}}_goal_edit">
+                        <h5>Goal: {{item.goal}}</h5>
+                        <button class="btn" id="{{item.item_name}}_goal_btn" onclick="open_set_goal_menu('{{item.item_name}}')">Edit Goal</button>
+                    </div>
+                    <div class="edit_field" id="{{item.item_name}}_note_edit">
+                        <h5>Notes: {{item.item_notes}}</h5>
+                        <button class="btn" id="{{item.item_name}}_note_edit_btn" onclick="open_notes_edit_menu('{{item.item_name}}')">Edit Note</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <button class="btn" onclick="delete_item('{{item.item_name}}')" style="background-color: red; color: white">Delete '{{item.item_name}}' Item</button>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- create new item -->
+         <div style="text-align: center;" id="create_item_menu">
+            <button class="btn" id="create_new_item_btn" onclick="create_item()">Create New Item</button>
+         </div>
+        
+        <!-- delete item -->
+
+        <!-- create new item -->
+
+        <!-- set item goal -->
+
+        <!-- set item note -->
+
+        <!-- reset count -->
+
+        <button style="background-color: red;" class="btn">
+            <a href="/item-tracker"><h6 style="font-weight: bold;">Track Items</h6></a>
+        </button>
+    </div>
+{% endblock %}
