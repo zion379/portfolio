@@ -19,7 +19,7 @@
         <h5 class="card-title">{{project.project_name}}</h5>
         <h6 class="card-text" style="color: #63b3ed !important;">{{project.project_date}}</h6>
         <p class="card-text">{{project.project_desc}}</p>
-        <a href="/project_view/{{project.project_name}}" class="btn btn-outline-info btn-sm">View Project</a>
+        <a href="{{ project.project_link if project.project_link else '/project_view/' ~ project.project_name }}" class="btn btn-outline-info btn-sm">View Project</a>
       </div>
     </div>
     {% endfor %}
