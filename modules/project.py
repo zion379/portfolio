@@ -38,11 +38,12 @@ class Carousel_obj(proj_content_obj):
         self.carousel_items.append(new_item)
 
 class Project_obj:
-    def __init__(self, project_name: str, project_desc: str, project_date: str = None, thumbnail_src: str = None):
+    def __init__(self, project_name: str, project_desc: str, project_date: str = None, thumbnail_src: str = None, project_link: str = None):
         self.project_name = project_name
         self.project_desc = project_desc
         self.project_date = project_date
         self.thumbnail_src = thumbnail_src
+        self.project_link = project_link
         self.project_content: list = []
 
     def add_content(self, proj_content: proj_content_obj):

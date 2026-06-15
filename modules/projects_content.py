@@ -319,7 +319,28 @@ GNSS_proj.add_content(gnss_header_group)
 GNSS_proj.add_content(gnss_build_group)
 
 
+# High Altitude Media Website
+HAM_R2 = "https://pub-6bd27672c3354cc3a77629401fdd604e.r2.dev"
+
+high_altitude_media_proj = Proj.Project_obj(
+    "High Altitude Media",
+    project_desc="A drone services platform for aerial construction monitoring — delivering 2D orthomosaics, 3D property models, and interactive virtual tours.",
+    project_date="2024",
+    thumbnail_src=f"{HAM_R2}/Graphics/Construction_Birds_Eye_View.jpeg"
+)
+high_altitude_media_proj.project_link = "/projects/high-altitude-media"
+
+ham_header_group = Proj.Content_group()
+ham_hero_img = Proj.proj_content_obj(
+    Proj.proj_content_type.IMAGE,
+    content_url=f"{HAM_R2}/Graphics/Construction_Birds_Eye_View.jpeg"
+)
+ham_header_group.add_content(ham_hero_img)
+high_altitude_media_proj.add_content(ham_header_group)
+
+
 # keep this section at the bottom of the file
+all_projects.append(high_altitude_media_proj)
 all_projects.append(printed_smart_mirror_proj)
 all_projects.append(blast_up_proj)
 all_projects.append(super_cube_proj)

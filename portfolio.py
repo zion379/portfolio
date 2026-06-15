@@ -52,6 +52,10 @@ def project_view(project_name: str):
 
     return render_template('project_view.html', project=current_project)
 
+@app.route('/projects/high-altitude-media')
+def high_altitude_media():
+    return render_template('high_altitude_media_project.html')
+
 @app.route('/hello/<name>')
 def hello_name(name):
     return 'Hello %s!' % name
