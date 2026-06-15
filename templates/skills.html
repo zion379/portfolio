@@ -1,14 +1,83 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
 {% block head %}{% endblock %}
 
 {% block body %}
 
-<h1>My Skills</h1>
-    <ul>
-      {% for skill in skills %}
-        <li> <p class="text-light">{{ skill }}</p> </li>
-      {% endfor %}
-    </ul>
+{% set skill_icons = {
+  'Python':            '🐍',
+  'Flask':             '🌐',
+  'HTML':              '📄',
+  'CSS':               '🎨',
+  'JavaScript':        '⚡',
+  'CAD':               '📐',
+  'Embedded Software': '💾',
+  'Embedded Hardware': '🔌',
+  'Java':              '☕',
+  'C Programming':     '⚙️',
+  'Electronics':       '🔋',
+  'Game Development':  '🎮',
+  'App Develoment':    '📱'
+} %}
+
+{% set skill_categories = [
+  {
+    'label': 'Software',
+    'skills': ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript', 'Java', 'C Programming']
+  },
+  {
+    'label': 'Hardware & Electronics',
+    'skills': ['Electronics', 'Embedded Hardware', 'Embedded Software', 'CAD']
+  },
+  {
+    'label': 'Development',
+    'skills': ['Game Development', 'App Develoment']
+  }
+] %}
+
+<section style="padding: 60px 0 80px;">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <p style="color:#63b3ed;font-size:.9rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;">What I Work With</p>
+      <h1 style="color:#f0f4f8;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:1rem;">My Skills</h1>
+      <div style="width:50px;height:3px;background:linear-gradient(90deg,#63b3ed,#4fd1c5);border-radius:2px;margin:0 auto;"></div>
+    </div>
+
+    <!-- Skill Categories -->
+    {% for category in skill_categories %}
+    <div class="mb-5">
+      <h5 style="color:#4fd1c5;font-size:.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem;padding-left:4px;">{{ category.label }}</h5>
+      <div class="d-flex flex-wrap gap-3">
+        {% for skill in category.skills %}
+        {% if skill in skills %}
+        <div class="skill-chip" style="
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 0.75rem 1.25rem;
+          background: rgba(255,255,255,0.04);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(255,255,255,0.09);
+          border-radius: 12px;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+          cursor: default;
+          transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        "
+        onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(99,179,237,0.3)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.4)'"
+        onmouseout="this.style.transform='translateY(0)';this.style.borderColor='rgba(255,255,255,0.09)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.3)'">
+          <span style="font-size:1.3rem;line-height:1;">{{ skill_icons.get(skill, '🔧') }}</span>
+          <span style="color:#e2e8f0;font-size:.95rem;font-weight:500;white-space:nowrap;">{{ skill }}</span>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
 
 {% endblock %}

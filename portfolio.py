@@ -1,15 +1,20 @@
 from flask import Flask, render_template, redirect, request, url_for
-import openai
-import json
+from openai import OpenAI
 import os
+from dotenv import load_dotenv
 from modules import projects_content
 from modules import project as Proj
 from modules.item_tracker_app import item_tracker
 
-app = Flask(__name__)
-openai.api_key = os.getenv('OPENAI_API_KEY')
-print(os.getenv('OPENAI_API_KEY'))
+load_dotenv()
 
+app = Flask(__name__)
+app.jinja_env.globals['asset_url'] = os.getenv('R2_PUBLIC_URL', '')
+
+try:
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+except Exception:
+    client = None
 
 
 @app.route('/')
@@ -20,7 +25,7 @@ def index():
 
 @app.route('/skills')
 def skills():
-    my_skills = ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript', 'CAD', 'Embedded Software', 'Embedded Hardware', 'C Programming', 'Electronics', 'Game Development', 'App Develoment']
+    my_skills = ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript', 'Java', 'CAD', 'Embedded Software', 'Embedded Hardware', 'C Programming', 'Electronics', 'Game Development', 'App Develoment']
     return render_template('skills.html', skills=my_skills)
 
 @app.route('/projects')
@@ -35,24 +40,18 @@ def project():
     return render_template('projects.html', all_projects=all_projects,page_title=page_title, project_titles=project_titles, project_Descriptions=project_Descriptions, project_Link=project_Link, project_img_urls=project_img_urls)
 
 
-
 @app.route('/project_view/<project_name>')
 def project_view(project_name: str):
-    current_project: Proj.Project_obj 
-    # create the project objects
+    current_project: Proj.Project_obj
     for project in projects_content.all_projects:
         if project.project_name.lower() == project_name.lower():
             current_project = project
-            print("current project " + current_project.project_name + " content length: " + str(len(current_project.project_content)))
             break
         else:
             current_project = None
-            print(project_name + " is not a project that exist.")
-            
 
-    return render_template('project_view.html', project=current_project) # create this page file
+    return render_template('project_view.html', project=current_project)
 
-#testing
 @app.route('/hello/<name>')
 def hello_name(name):
     return 'Hello %s!' % name
@@ -69,14 +68,17 @@ def smartMirror():
 
 @app.route('/smart-mirror-chatbot', methods=("GET", "POST"))
 def MirrorCompletions():
+    result = None
     if request.method == "POST":
-        usr_response = request.form["userinput"]
-        response = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=[{"role": "user", "content": usr_response}])
-        return redirect(url_for("MirrorCompletions", result=response.choices[0].message))
-
-    result = str(request.args.get("result"))
-    data = json.loads(result)
-    result = data["content"]
+        if client is None:
+            result = "OpenAI API key not configured. Set OPENAI_API_KEY in your .env file."
+        else:
+            usr_response = request.form["userinput"]
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": usr_response}]
+            )
+            result = response.choices[0].message.content
     return render_template("gpt_completions.html", result=result)
 
 @app.route('/smart-mirror-chat')
@@ -84,95 +86,44 @@ def MirrorChat():
     return render_template("gpt_completions.html")
 
 # experimental routes
-# car tracker app data stream
-gps_tracker_stream: str = "dd"
 @app.route('/car-tracker-stream', methods=["GET"])
 def car_tracker_stream():
     with open('static/Experimental/gps_stream.txt', "r") as file:
         contents = file.read()
-
     return contents
 
 
 @app.route('/update-tracker-stream/<stream>', methods=['GET','POST'])
 def update_tracker_stream(stream:str):
-    gps_tracker_stream = stream
-
     with open('static/Experimental/gps_stream.txt', "w") as file:
         file.write(stream)
-
-    print(gps_tracker_stream)
-    return gps_tracker_stream
+    return stream
 
 @app.route('/car-tracker-app', methods=['GET'])
 def car_tracker_app():
+    try:
+        with open('static/Experimental/gps_stream.txt', "r") as file:
+            contents = file.read()
 
-    lat: float = 0
-    long: float = 0
-    course_deg: float = 0
-    mph: float = 0
-    month: int = 0
-    day: int = 0
-    year: int = 0
-    altitude_f: float = 0
-    altitude_m: float = 0
-    hour: int = 0
-    min: int = 0
-    sec: int = 0
-    sat_v: int = 0
-    sat_age: int = 0
+        opening_brackets_list = []
+        closing_brackets_list = []
 
-    opening_brackets_list:list = []
-    closing_brackets_list:list = []
-
-    # open stream data
-    with open('static/Experimental/gps_stream.txt', "r") as file:
-        contents = file.read()
-        
-        char_index:int = 0
-
+        char_index = 0
         for c in contents:
-            # check for open brackets
             if c == '[':
                 opening_brackets_list.append(char_index)
-            # check for close brackets
             if c == ']':
                 closing_brackets_list.append(char_index)
             char_index += 1
 
-        # seperate packets
-        # bracket list open bracket 0..1, close bracket x..0
         packet_1 = contents[opening_brackets_list[1]:closing_brackets_list[0] + 1]
         packet_2 = contents[opening_brackets_list[2]:closing_brackets_list[1] + 1]
 
-        #remove brackets
         packet_1 = packet_1[1:len(packet_1)-1]
         packet_2 = packet_2[1:len(packet_1)-1]
 
-        # seperate data
-        packet_1_data: list[str] = [str(x) for  x in packet_1.split(",")]
-        packet_2_data: list[str] = [str(x) for  x in packet_2.split(",")]
-
-        # remove string commas
-        char_index = 0
-        for data in packet_1_data:
-            data = data.replace("'","")
-            packet_1_data[char_index] = data
-            char_index += 1
-            #print(data)
-
-        char_index = 0
-        for data in packet_2_data:
-            data = data.replace("'","")
-            packet_2_data[char_index] = data
-            char_index += 1
-            #print(data)
-    
-
-        #print("packet 1 = " + str(packet_1_data))
-        #print("packet 2 = " + str(packet_2_data))
-
-        # save data
+        packet_1_data = [str(x).replace("'", "") for x in packet_1.split(",")]
+        packet_2_data = [str(x).replace("'", "") for x in packet_2.split(",")]
 
         lat = packet_1_data[0]
         long = packet_1_data[1]
@@ -188,86 +139,79 @@ def car_tracker_app():
         min = packet_2_data[3]
         sec = packet_2_data[4]
         sat_v = packet_2_data[6]
-        sat_age = packet_2_data[8]
 
+        return render_template('car_tracker_app.html', lat=lat, long=long,
+            altitude_miles=altitude_miles, course_deg=course_deg, mph=mph,
+            month=month, day=day, year=year, altitude_f=altitude_f,
+            altitude_m=altitude_m, hour=hour, min=min, sec=sec, sat_v=sat_v)
 
-        #print(sat_age)
+    except (FileNotFoundError, IndexError, ValueError) as e:
+        return render_template('car_tracker_app.html', error=str(e),
+            lat=0, long=0, altitude_miles=0, course_deg=0, mph=0,
+            month=0, day=0, year=0, altitude_f=0, altitude_m=0,
+            hour=0, min=0, sec=0, sat_v=0)
 
-
-    return render_template('car_tracker_app.html', lat=lat, long=long, altitude_miles=altitude_miles, course_deg=course_deg, mph=mph, month=month, day=day, year=year, altitude_f=altitude_f, altitude_m=altitude_m, hour=hour, min=min, sec=sec, sat_v=sat_v)
 
 item_tracker_app = item_tracker.Item_tracker_manager()
 
-# items Tracker app
 @app.route('/item-tracker', methods=["GET"])
-def item_tracker():
+def item_tracker_route():
     return render_template('item_tracker_app/item_tracker.html', tracked_items=item_tracker_app.items)
 
 @app.route('/item-tracker-increase-item-count/<item_name>', methods=['GET', 'POST'])
 def item_tracker_increase_item_count(item_name:str):
-    item_tracker_app.increase_item_count(item_name, "Anonymous") # update to where tech is populated
+    item_tracker_app.increase_item_count(item_name, "Anonymous")
     return item_name
 
 @app.route('/item-tracker-decrease-item-count/<item_name>', methods=['GET', 'POST'])
 def item_tracker_decrease_item_count(item_name:str):
-    item_tracker_app.decrease_item_count(item_name, "Anonymous") # update to where tech is populated
+    item_tracker_app.decrease_item_count(item_name, "Anonymous")
     return item_name
 
 @app.route('/item-tracker-config', methods=["GET"])
 def item_tracker_config():
     return render_template('item_tracker_app/item_tracker_config.html', tracked_items=item_tracker_app.items)
 
-
 @app.route('/item-tracker-config/edit-name/', methods=["GET", "POST"])
 def item_tracker_edit_item_name():
     item = request.args.get('item')
     new_name = request.args.get('name')
     item_tracker_app.update_item_name(item, new_name)
-
     return f'updated {item} name to {new_name}'
-
 
 @app.route('/item-tracker-config/set-count/', methods=["POST", "GET"])
 def item_tracker_set_count():
-    count:int = request.args.get('count')
+    count = request.args.get('count')
     item_name = request.args.get('item')
     item_tracker_app.set_item_count(item_name, count)
-    print(f"{count} , {item_name}")
     return f'updated {item_name} count to {count}'
 
 @app.route('/item-tracker-config/set-goal/', methods=["POST", "GET"])
 def item_tracker_set_goal():
-    goal:int = request.args.get('goal')
+    goal = request.args.get('goal')
     item_name = request.args.get('item')
     item_tracker_app.set_item_goal(item_name, goal)
-    print(f"{goal} , {item_name}")
     return f'updated {item_name} goal to {goal}'
 
 @app.route('/item-tracker-config/set-note/', methods=["POST", "GET"])
 def item_tracker_set_note():
-    note:str = request.args.get('notes')
+    note = request.args.get('notes')
     item_name = request.args.get('item')
     item_tracker_app.set_item_note(item_name, note)
-    print(f"{note} , {item_name}")
-    return f'updated {item_name} goal to {note}'
+    return f'updated {item_name} note to {note}'
 
 @app.route('/item-tracker-config/delete-item/', methods=["POST", "GET"])
 def item_tracker_delete_item():
     item_name = request.args.get('item')
     item_tracker_app.remove_item(item_name)
-    print(f"deleted {item_name}")
     return f'deleted {item_name}'
-
 
 @app.route('/item-tracker-config/create-item/', methods=["POST", "GET"])
 def item_tracker_create_item():
     item_name = request.args.get('item')
     item_tracker_app.create_new_item(item_name)
-    print(f"created {item_name}")
     return f'created {item_name}'
 
-#app.run(debug=True) # Comment this out if in produciton mode
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    app.run(host='0.0.0.0', debug=True)

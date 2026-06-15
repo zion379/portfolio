@@ -11,26 +11,26 @@
   
   <div class="row" style="display: flex; justify-content:center;">
     {% for project in all_projects %}
-    <div class="card bg-secondary col-md-4 col-sm-4 ms-2 me-2 mb-2" style="width: 18rem;">
+    <div class="card glass-card col-md-4 col-sm-4 ms-2 me-2 mb-2" style="width: 18rem;">
       {% if project.thumbnail_src %}
         <img src="{{project.thumbnail_src}}" alt="proj image" class="d-block w-100 rounded mt-2" style="height:fit-content; width:fit-content;">
       {% endif %}
       <div class="card-body">
-        <h5 class="card-title text-light">{{project.project_name}}</h5>
-        <h6 class="card-text text-light">{{project.project_date}}</h6>
-        <p class="card-text text-light">{{project.project_desc}}</p>
-        <a href="/project_view/{{project.project_name}}" class="btn btn-primary">View Project</a>
+        <h5 class="card-title">{{project.project_name}}</h5>
+        <h6 class="card-text" style="color: #63b3ed !important;">{{project.project_date}}</h6>
+        <p class="card-text">{{project.project_desc}}</p>
+        <a href="/project_view/{{project.project_name}}" class="btn btn-outline-info btn-sm">View Project</a>
       </div>
     </div>
     {% endfor %}
     <!-- Legacy Method of showing project cards remove once replacement project is finished. -->
     {% for project in  project_titles%}
-    <div class="card bg-secondary col-md-4 col-sm-4 ms-2 me-2" style="width: 18rem;">
+    <div class="card glass-card col-md-4 col-sm-4 ms-2 me-2" style="width: 18rem;">
         <img src="{{project_img_urls[loop.index0]}}" alt="smart mirror cover render" class="d-block w-100 rounded">
         <div class="card-body">
-          <h5 class="card-title text-light">{{project_titles[loop.index0]}}</h5>
-          <p class="card-text text-light">{{project_Descriptions[loop.index0]}}</p>
-          <a href="{{project_Link[loop.index0]}}" class="btn btn-primary">View Project</a>
+          <h5 class="card-title">{{project_titles[loop.index0]}}</h5>
+          <p class="card-text">{{project_Descriptions[loop.index0]}}</p>
+          <a href="{{project_Link[loop.index0]}}" class="btn btn-outline-info btn-sm">View Project</a>
         </div>
       </div>
     {% endfor %}

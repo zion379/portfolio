@@ -3,10 +3,78 @@
 {% block head %}{% endblock %}
 
 {% block body %}
+<section class="d-flex align-items-center" style="min-height: calc(100vh - 56px); padding: 60px 0;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 text-center">
 
-<div class="container">
-  <h1 class="text-light" >{{intro_header_text}}</h1>
-  <p class="text-light">{{intro_paragraph_text}}</p>
-</div>
+        <p style="
+          color: #63b3ed;
+          font-size: 1rem;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          margin-bottom: 1rem;
+        ">Electrical & Software Engineer</p>
 
+        <h1 style="
+          font-size: clamp(2.2rem, 5vw, 3.8rem);
+          font-weight: 700;
+          color: #f0f4f8;
+          line-height: 1.2;
+          margin-bottom: 1.5rem;
+        ">{{intro_header_text}}</h1>
+
+        <div style="
+          width: 60px;
+          height: 3px;
+          background: linear-gradient(90deg, #63b3ed, #4fd1c5);
+          border-radius: 2px;
+          margin: 0 auto 1.75rem;
+        "></div>
+
+        <p style="
+          color: #94a3b8;
+          font-size: 1.1rem;
+          line-height: 1.85;
+          max-width: 680px;
+          margin: 0 auto 2.5rem;
+        ">{{intro_paragraph_text}}</p>
+
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="/projects" style="
+            display: inline-block;
+            padding: 0.65rem 1.75rem;
+            background: linear-gradient(135deg, #63b3ed, #4fd1c5);
+            color: #0d1117;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+          " onmouseover="this.style.opacity='0.85';this.style.transform='translateY(-2px)'"
+             onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+            View Projects
+          </a>
+          <a href="/skills" style="
+            display: inline-block;
+            padding: 0.65rem 1.75rem;
+            background: transparent;
+            color: #63b3ed;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid rgba(99, 179, 237, 0.4);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+          " onmouseover="this.style.background='rgba(99,179,237,0.08)';this.style.transform='translateY(-2px)'"
+             onmouseout="this.style.background='transparent';this.style.transform='translateY(0)'">
+            My Skills
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

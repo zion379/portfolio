@@ -2,42 +2,38 @@ from modules import project as Proj
 
 all_projects: list[Proj.Project_obj] = []
 
+R2 = "https://pub-2ee2f00b39064103a9d6c75884cb3166.r2.dev"
+
 #EMP Project
-EMP_proj = Proj.Project_obj("EMP", "This experiment was done to see if electromagnetic waves of a diffrent frequency of light could trigger photo synthesis.", project_date="Jan 2018", thumbnail_src="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/Photon_EMP/spark_gap_magnified.gif")
+EMP_proj = Proj.Project_obj("EMP", "This experiment was done to see if electromagnetic waves of a diffrent frequency of light could trigger photo synthesis.", project_date="Jan 2018", thumbnail_src=f"{R2}/EMP-Proj/EMP_Circuit_View.JPG")
 hero_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://live.staticflickr.com/65535/52798783778_0624d7202e_b.jpg")
 
 
 # Creating the EMP
 emp_creation_group = Proj.Content_group(heading="EMP Design and Build")
-emp_case_2d_sketch = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/EMP_Case_2D_Sketch2.jpeg")
-emp_case_pre_print = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/EMP_Case_Pre_Print.jpeg")
+emp_case_2d_sketch = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/EMP-Proj/EMP_Case_2D_Sketch2.jpeg")
+emp_case_pre_print = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/EMP-Proj/EMP_Case_Pre_Print.jpeg")
 emp_creation_group.add_content(emp_case_2d_sketch)
 emp_creation_group.add_content(emp_case_pre_print)
 
 # Spark Gap Info Group
 sparkgap_info_group = Proj.Content_group()
-sparkgap_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/Photon_EMP/spark_gap_magnified.gif", position=Proj.content_position.LEFT)
 sprakgap_info_text = Proj.proj_content_obj(Proj.proj_content_type.TEXT, position=Proj.content_position.CENTER, text_content="One of the First Initial test of the electronics. This is a view of the spark gap for the EMP device.")
-circuit_view_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/EMP_Circuit_View.JPG", position=Proj.content_position.RIGHT)
-sparkgap_info_group.add_content(sparkgap_gif)
+circuit_view_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/EMP-Proj/EMP_Circuit_View.JPG", position=Proj.content_position.RIGHT)
 sparkgap_info_group.add_content(circuit_view_img)
 sparkgap_info_group.add_content(sprakgap_info_text)
 
 # experiment Emp Group
 running_experiment_group = Proj.Content_group()
-photon_emp_test_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/photon_emp_test.jpeg", position=Proj.content_position.RIGHT)
+photon_emp_test_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/EMP-Proj/photon_emp_test.jpeg", position=Proj.content_position.RIGHT)
 experiment_desc = Proj.proj_content_obj(Proj.proj_content_type.TEXT,"Control Plant in the rear away from EMP Device. The Treatment plant is the center of the EMP device.", position=Proj.content_position.RIGHT)
 running_experiment_group.add_content(experiment_desc)
 running_experiment_group.add_content(photon_emp_test_img)
 
 # experiment results Group
 experiment_results_group = Proj.Content_group(heading="Plant Results after EMP Treatmeant")
-emp_test_results = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/photon_emp_test_results.jpeg")
-carbon_deoxide_results_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE,content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/carbon_deoxide_results.jpeg")
-dissolved_oxygen_scale_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/dissolved_oxygen_scale.jpeg")
+emp_test_results = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/EMP-Proj/photon_emp_test_results.jpeg")
 experiment_results_group.add_content(emp_test_results)
-experiment_results_group.add_content(carbon_deoxide_results_img)
-experiment_results_group.add_content(dissolved_oxygen_scale_img)
 
 EMP_proj.add_content(hero_img)
 EMP_proj.add_content(emp_creation_group)
@@ -53,7 +49,7 @@ teaching_proj = Proj.Project_obj("Instructor", "Instructor for Digipen Instituit
 teaching_desc = Proj.proj_content_obj(Proj.proj_content_type.TEXT, text_content="Taught in person at two school and online classes.")
 gamedev_instructing_group = Proj.Content_group(heading="Game Development and Programming")
 
-doughnut_invaders_tutorial = Proj.proj_content_obj(Proj.proj_content_type.PDF,content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/documentation/Make%20Code%20Arcade%20-%20Doughnut%20Invaders.pdf",text_content="Self guided tutorial created for my students.")
+doughnut_invaders_tutorial = Proj.proj_content_obj(Proj.proj_content_type.PDF,content_url=f"{R2}/Teaching/Make%20Code%20Arcade%20-%20Doughnut%20Invaders.docx",text_content="Self guided tutorial created for my students.")
 
 
 teaching_proj.add_content(teaching_desc)
@@ -62,15 +58,15 @@ teaching_proj.add_content(doughnut_invaders_tutorial)
 
 #Game Dev
 #Super Cube Game
-super_cube_proj = Proj.Project_obj("SuperCube", "A hypercasual game where levels are dynamically generated based on how far the player makes it throug the game.", project_date="2018", thumbnail_src="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/super_cube_game/super_cube_gif.gif")
+super_cube_proj = Proj.Project_obj("SuperCube", "A hypercasual game where levels are dynamically generated based on how far the player makes it throug the game.", project_date="2018", thumbnail_src=f"{R2}/super-cube-game/super_cube_gif.gif")
 
 super_cuber_header_group = Proj.Content_group()
-hero_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/super_cube_game/super_cube_gif.gif")
+hero_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/super-cube-game/super_cube_gif.gif")
 super_cuber_header_group.add_content(hero_gif)
 
 super_cube_experimentation_group = Proj.Content_group(heading="Game Core Loop Experimentation")
-super_cube_early_mechanics_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/super_cube_game/Super_Cube_Experimentation.gif")
-super_cube_early_mechanics2_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/super_cube_game/Super_Cube_Experimentation2.gif")
+super_cube_early_mechanics_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/super-cube-game/Super_Cube_Experimentation.gif")
+super_cube_early_mechanics2_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/super-cube-game/Super_Cube_Experimentation2.gif")
 super_cube_experimentation_group.add_content(super_cube_early_mechanics_gif)
 super_cube_experimentation_group.add_content(super_cube_early_mechanics2_gif)
 
@@ -78,26 +74,26 @@ super_cube_proj.add_content(super_cuber_header_group)
 super_cube_proj.add_content(super_cube_experimentation_group)
 
 #Blast Up Game
-blast_up_proj = Proj.Project_obj("Blast-Up", "A hypercasual game where players protect a rocket ship as aireborne obstacles try to bring the ship down. ", project_date="2018", thumbnail_src="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/blast_up_game/Blast_up_game.gif")
+blast_up_proj = Proj.Project_obj("Blast-Up", "A hypercasual game where players protect a rocket ship as aireborne obstacles try to bring the ship down. ", project_date="2018", thumbnail_src=f"{R2}/blast-up-game/Blast_up_game.gif")
 
 blast_up_header_group = Proj.Content_group()
-hero_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/blast_up_game/Blast_up_game.gif")
+hero_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/blast-up-game/Blast_up_game.gif")
 blast_up_header_group.add_content(hero_gif)
 
 blast_up_lvl_design_group = Proj.Content_group(heading="Game Level Design")
-blast_up_lvl_design_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Blast_Up_game/Blast_Up_Art_Design.jpg")
-blast_up_scrolling_bg_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/blast_up_game/Blast_Up_Scrolling_Background.gif")
+blast_up_lvl_design_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/blast-up-game/Blast_Up_Art_Design.jpg")
+blast_up_scrolling_bg_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/blast-up-game/Blast_Up_Scrolling_Background.gif")
 blast_up_lvl_design_group.add_content(blast_up_lvl_design_img)
 blast_up_lvl_design_group.add_content(blast_up_scrolling_bg_gif)
 
 blast_up_leader_board_group = Proj.Content_group(heading="Leader Board System")
-blast_up_leader_board_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Blast_Up_game/Blast_Up_Leader_board_2.PNG")
-blast_up_leader_board_entry = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Blast_Up_game/New_leader_board_entry.PNG")
+blast_up_leader_board_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/blast-up-game/Blast_Up_Leader_board_2.PNG")
+blast_up_leader_board_entry = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/blast-up-game/New_leader_board_entry.PNG")
 blast_up_leader_board_group.add_content(blast_up_leader_board_img)
 blast_up_leader_board_group.add_content(blast_up_leader_board_entry)
 
 blast_up_play_testing_group = Proj.Content_group(heading="Development Play Testing")
-blast_up_beta_test_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Blast_Up_game/Blast_up_beta_testing.JPG")
+blast_up_beta_test_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/blast-up-game/Blast_up_beta_testing.JPG")
 blast_up_play_testing_group.add_content(blast_up_beta_test_img)
 
 blast_up_proj.add_content(blast_up_header_group)
@@ -108,47 +104,43 @@ blast_up_proj.add_content(blast_up_play_testing_group)
 #App Dev
 
 #Robotics
-robotics_competing = Proj.Project_obj("competitive-robotics", "During Middle/Highschool I enoyed being a contributing member to the competitve robotics clubs. particpating in FTC events in middle school and FRC events in highschool.", project_date="2014-2017", thumbnail_src="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/robotics_3588_robot.JPG")
+robotics_competing = Proj.Project_obj("competitive-robotics", "During Middle/Highschool I enoyed being a contributing member to the competitve robotics clubs. particpating in FTC events in middle school and FRC events in highschool.", project_date="2014-2017", thumbnail_src=f"{R2}/competitive-robotics/robotics_3588_robot.JPG")
 
 robotics_competing_header_group = Proj.Content_group()
-hero_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/Photon_EMP/highschool-robotics-team-group.PNG", position=Proj.content_position.RIGHT)
+hero_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/competitive-robotics/highschool-robotics-team-group.PNG", position=Proj.content_position.RIGHT)
 robotics_competing_header_group.add_content(hero_img)
 
 team_info_group = Proj.Content_group(heading="Team 3588")
-team_bot_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/robotics_3588_robot.JPG")
-team_bot_side_view = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/team_bot_side_view.JPG")
+team_bot_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/competitive-robotics/robotics_3588_robot.JPG")
+team_bot_side_view = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/competitive-robotics/team_bot_side_view.JPG")
 team_info_group.add_content(team_bot_side_view)
 team_info_group.add_content(team_bot_img)
 
 pre_comp_group = Proj.Content_group(heading="Pre-Competition")
-robot_pre_comp_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/competitive_robotics/robot_pre_competition.gif")
+robot_pre_comp_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/competitive-robotics/robot_pre_competition.gif")
 pre_comp_group.add_content(robot_pre_comp_gif)
 
 pneumatic_system_group = Proj.Content_group(heading="Robot pneumatic system experimentaiton")
-pneumatic_system_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/competitive_robotics/experimenting_bot_pneumatic_system.gif")
+pneumatic_system_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/competitive-robotics/experimenting_bot_pneumatic_system.gif")
 pneumatic_sys_desc = Proj.proj_content_obj(Proj.proj_content_type.TEXT, text_content="Our Team bot Utilized pneumatic controlled actuators. We wanted to test if we were able to use this mechanism to pick up gears. During the competition the robot will have the ability to transport gears as part of the objective to score point during a competitive match.")
 pneumatic_system_group.add_content(pneumatic_system_gif)
 pneumatic_system_group.add_content(pneumatic_sys_desc)
 
 
 bot_climbing_mechanism_group = Proj.Content_group(heading="Climbing Mechanism")
-climbing_mechanism_test = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/competitive_robotics/bot_climbing_mechanism_experiment.gif")
-bot_climbing_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/competitive_robotics/bot_climbing_test.gif")
+climbing_mechanism_test = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/competitive-robotics/bot_climbing_mechanism_experiment.gif")
+bot_climbing_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/competitive-robotics/bot_climbing_test.gif")
 bot_climbing_mechanism_group.add_content(bot_climbing_gif)
 bot_climbing_mechanism_group.add_content(climbing_mechanism_test)
 
 bot_drive_system_group = Proj.Content_group(heading="Robot Drive System")
-locomototion_example_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/competitive_robotics/robot_movement_show_case.gif")
-omni_wheel_close_up_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/Omni_Wheel_Close_Up.JPG")
-locomotion_intial_test_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/competitive_robotics/bot_locomotion_intial_test.gif")
-bot_drive_system_group.add_content(locomototion_example_gif)
-bot_drive_system_group.add_content(omni_wheel_close_up_img)
+locomotion_intial_test_gif = Proj.proj_content_obj(Proj.proj_content_type.GIF, content_url=f"{R2}/competitive-robotics/bot_locomotion_intial_test.gif")
 bot_drive_system_group.add_content(locomotion_intial_test_gif)
 
 drive_system_design_group = Proj.Content_group(heading="Robot Chassis Design")
-bot_base_initial_design_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/bot_base_initial_design.JPG")
-bot_cad_view_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/bot_chassis_cad_view.JPG")
-bot_measurements_view_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/competitive%20robotics/bot_frame_measurements_view.JPG")
+bot_base_initial_design_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/competitive-robotics/bot_base_initial_design.JPG")
+bot_cad_view_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/competitive-robotics/bot_chassis_cad_view.JPG")
+bot_measurements_view_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/competitive-robotics/bot_frame_measurements_view.JPG")
 drive_system_design_group.add_content(bot_base_initial_design_img)
 drive_system_design_group.add_content(bot_cad_view_img)
 drive_system_design_group.add_content(bot_measurements_view_img)
@@ -223,8 +215,8 @@ mirror_software_group = Proj.Content_group(heading="Mirror Software")
 
 mirror_software_carousel = Proj.Carousel_obj("Mirror_Software_Carousel")
 mirror_software_hero_img = Proj.Carousel_Item(content_url="https://live.staticflickr.com/65535/52743904582_b1c9842672_b.jpg", desc="Mirror Electronics and Frame Mid Finished. Time to create the software")
-mirror_monitor_test = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/3D_Printed_Mirror/Mirror_Monitor_test.gif", desc="Mirror Monitor Test")
-mirror_ambient_lighting = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/gifs/3D_Printed_Mirror/Ambient_Lighting_Test.gif", desc="Intial Test of the Ambient Lighting")
+mirror_monitor_test = Proj.Carousel_Item(content_url=f"{R2}/smart-mirror-project/Mirror_Monitor_test.gif", desc="Mirror Monitor Test")
+mirror_ambient_lighting = Proj.Carousel_Item(content_url=f"{R2}/smart-mirror-project/Ambient_Lighting_Test.gif", desc="Intial Test of the Ambient Lighting")
 
 mirror_software_carousel.add_item(mirror_monitor_test)
 mirror_software_carousel.add_item(mirror_software_hero_img)
@@ -238,7 +230,7 @@ mirror_hardware_group = Proj.Content_group(heading="Mirror Hardware")
 mirror_hardware_carousel = Proj.Carousel_obj("Mirror_Hardware_Carousel")
 mirror_hardware_carousel_hero = Proj.Carousel_Item("https://live.staticflickr.com/65535/52744840285_d7abf50270_b.jpg", desc="Mirror Hardware")
 mirror_accel_sensor_img = Proj.Carousel_Item("https://live.staticflickr.com/65535/52744910853_dd3edf8757_b.jpg", desc="Accelerometer Sensor")
-mirror_microphone_img = Proj.Carousel_Item("https://live.staticflickr.com/65535/52744911473_79c7d0912a_b.jpg", desc="Microphone Sensor") # left off here..
+mirror_microphone_img = Proj.Carousel_Item("https://live.staticflickr.com/65535/52744911473_79c7d0912a_b.jpg", desc="Microphone Sensor")
 mirror_camera_img = Proj.Carousel_Item("https://live.staticflickr.com/65535/52744911898_cef36291cf_b.jpg", desc="Camera Sensor")
 mirror_led_bottom_img = Proj.Carousel_Item("https://live.staticflickr.com/65535/52744672039_54ea56c7f5_b.jpg", desc="Ambient Lighting - LED Array Bottom")
 mirror_led_top_img = Proj.Carousel_Item("https://live.staticflickr.com/65535/52744839695_23d761315d_b.jpg", desc="Ambient Lighting - LED Array Top")
@@ -294,18 +286,18 @@ printed_smart_mirror_proj.add_content(mirror_software_group)
 #3D Printing
 
 # Electric Bike Project
-electric_bikes_proj =  Proj.Project_obj("Electric-Bikes", "multiple scrapy working ebike builds. with the intentions of being a prototype. while we are currently working on the design of an offroad frame.","2023-2024") # add thumbnail later
-ebike_vid = Proj.proj_content_obj(Proj.proj_content_type.VIDEO,"E-Bike Build Video","https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/videos/Off_road_Ebike_Build.mp4",Proj.content_position.CENTER)
-ebike_vid_group = Proj.Content_group("E-Bike Build Vid") # remove vid content group soon.
+electric_bikes_proj = Proj.Project_obj("Electric-Bikes", "multiple scrapy working ebike builds. with the intentions of being a prototype. while we are currently working on the design of an offroad frame.","2023-2024")
+ebike_vid = Proj.proj_content_obj(Proj.proj_content_type.VIDEO,"E-Bike Build Video",f"{R2}/Electric-Bikes/Off_road_Ebike_Build.mp4",Proj.content_position.CENTER)
+ebike_vid_group = Proj.Content_group("E-Bike Build Vid")
 ebike_vid_group.add_content(ebike_vid)
 electric_bikes_proj.add_content(ebike_vid)
 
 # GNSS
-GNSS_proj = Proj.Project_obj('GNSS-Recievier', 'Custom surveying GNSS reciever with data logging capabilities.', '2023','https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/IMG_6144.HEIC')
+GNSS_proj = Proj.Project_obj('GNSS-Recievier', 'Custom surveying GNSS reciever with data logging capabilities.', '2023', f"{R2}/GNSS-Recievier-Proj/IMG_6144.jpeg")
 
 gnss_header_group = Proj.Content_group()
 gnss_header_proj_desc = Proj.proj_content_obj(Proj.proj_content_type.TEXT, text_content="This GNSS Recievier is cablable of less than 1cm of accuracy. This project was created as an alternative to purchasing an existing GNSS reciever currently on the market to avoid the high cost of these tools commercially available. This project is currently used for photogrammetry projects with, https://www.high-altitude-media.com", position=Proj.content_position.CENTER)
-custom_reciever_device_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE,content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00577.JPG",position= Proj.content_position.CENTER)
+custom_reciever_device_img = Proj.proj_content_obj(Proj.proj_content_type.IMAGE, content_url=f"{R2}/GNSS-Recievier-Proj/IMG_6144.jpeg", position=Proj.content_position.CENTER)
 
 gnss_header_group.add_content(gnss_header_proj_desc)
 gnss_header_group.add_content(custom_reciever_device_img)
@@ -313,19 +305,13 @@ gnss_header_group.add_content(custom_reciever_device_img)
 gnss_build_group = Proj.Content_group(heading="Reciever Devlopment/Manufacturing")
 gnss_build_carousel = Proj.Carousel_obj(content_title="Build_Photos")
 
-device_upper_half_electronics_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/IMG_6143.jpg",desc="Preping for testing device functionality outdoors, simple UI as of now for testing device features.")
-device_break_down_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/IMG_6138.jpg",desc="Device upper Section, where SD Card, MicroProcessor, Power and Data Lines mount to upper frame of device.")
-device_mid_sec_rear_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00571.JPG", desc="3D Printed Rear Mid Section of Case")
-device_bottom_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00573.JPG", desc="device bottom - GNSS Debug Ports for Configuring ublox chip.")
-device_upper_cabling_img = Proj.Carousel_Item(content_url="https://zionjohnsonportfolio.nyc3.cdn.digitaloceanspaces.com/images/GNSS_Reciever/DSC00572.JPG", desc="GNSS innner initial cabling.")
+device_break_down_img = Proj.Carousel_Item(content_url=f"{R2}/GNSS-Recievier-Proj/IMG_6138.jpeg", desc="Device upper Section, where SD Card, MicroProcessor, Power and Data Lines mount to upper frame of device.")
+device_overview_img = Proj.Carousel_Item(content_url=f"{R2}/GNSS-Recievier-Proj/IMG_6189.jpeg", desc="GNSS Receiver overview.")
+device_thumbnail_img = Proj.Carousel_Item(content_url=f"{R2}/GNSS-Recievier-Proj/IMG_6144.jpeg", desc="Preping for testing device functionality outdoors.")
 
-
-gnss_build_carousel.add_item(device_upper_half_electronics_img)
+gnss_build_carousel.add_item(device_thumbnail_img)
 gnss_build_carousel.add_item(device_break_down_img)
-gnss_build_carousel.add_item(device_upper_cabling_img)
-gnss_build_carousel.add_item(device_mid_sec_rear_img)
-gnss_build_carousel.add_item(device_bottom_img)
-
+gnss_build_carousel.add_item(device_overview_img)
 
 gnss_build_group.add_content(gnss_build_carousel)
 
@@ -342,5 +328,3 @@ all_projects.append(EMP_proj)
 all_projects.append(robotics_competing)
 all_projects.append(electric_bikes_proj)
 all_projects.append(GNSS_proj)
-
-
