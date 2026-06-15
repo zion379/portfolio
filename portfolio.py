@@ -42,15 +42,12 @@ def project():
 
 @app.route('/project_view/<project_name>')
 def project_view(project_name: str):
-    current_project: Proj.Project_obj
     for project in projects_content.all_projects:
         if project.project_name.lower() == project_name.lower():
-            current_project = project
-            break
-        else:
-            current_project = None
-
-    return render_template('project_view.html', project=current_project)
+            if project.project_link:
+                return redirect(project.project_link)
+            return render_template('project_view.html', project=project)
+    return render_template('project_view.html', project=None)
 
 @app.route('/projects/high-altitude-media')
 def high_altitude_media():
